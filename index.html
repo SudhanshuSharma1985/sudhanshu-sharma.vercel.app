@@ -1,659 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sudhanshu Sharma — Principal Data Scientist</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Figtree:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-:root {
-  --bg: #060a12;
-  --bg2: #0b1120;
-  --bg3: #111827;
-  --cyan: #00e5ff;
-  --cyan-dim: rgba(0,229,255,0.12);
-  --cyan-glow: rgba(0,229,255,0.4);
-  --green: #00ffa3;
-  --green-dim: rgba(0,255,163,0.1);
-  --white: #f0f4ff;
-  --muted: #6b7a99;
-  --border: rgba(0,229,255,0.15);
-  --border-soft: rgba(255,255,255,0.06);
-  --card-bg: rgba(11,17,32,0.8);
-}
+  :root {
+    --white:   #ffffff;
+    --off:     #f7f8fb;
+    --gray-50: #f1f4f9;
+    --border:  #e2e7f0;
+    --border2: #c8d3e8;
+    --ink:     #0d1b2e;
+    --ink2:    #2c3e55;
+    --muted:   #5a6a7e;
+    --faint:   #96a3b5;
+    --navy:    #1a3055;
+    --blue:    #1e5adc;
+    --blue-bg: #eff4ff;
+    --blue-bd: #bed0f7;
+    --amber:   #b45309;
+    --amber-bg:#fef3e2;
+    --shadow-sm: 0 1px 4px rgba(13,27,46,0.06), 0 4px 16px rgba(13,27,46,0.04);
+    --shadow-md: 0 4px 12px rgba(13,27,46,0.08), 0 12px 40px rgba(13,27,46,0.06);
+    --shadow-lg: 0 8px 24px rgba(13,27,46,0.10), 0 24px 60px rgba(13,27,46,0.08);
+  }
 
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Outfit',sans-serif;
-  background:var(--bg);
-  color:var(--white);
-  overflow-x:hidden;
-}
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Figtree', sans-serif;
+    background: var(--white);
+    color: var(--ink2);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* ── CURSOR ── */
-*, *:hover { cursor: default; }
-a, button { cursor: pointer !important; }
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 68px; padding: 0 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 14px; text-decoration: none;
+  }
+  .nav-monogram {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-size: 0.95rem; font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .nav-name {
+    font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600;
+    color: var(--ink); letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color 0.18s; padding-bottom: 2px;
+    border-bottom: 1.5px solid transparent; transition: all 0.18s;
+  }
+  .nav-links a:hover { color: var(--blue); border-bottom-color: var(--blue); }
 
-/* ── NOISE OVERLAY ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;z-index:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events:none;opacity:0.4;
-}
+  /* ── HERO ── */
+  .hero {
+    padding: 136px 60px 100px;
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 80px; align-items: start;
+  }
+  .hero-kicker {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 24px;
+  }
+  .kicker-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--blue);
+  }
+  .kicker-text {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem; color: var(--blue);
+    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3.8rem, 6vw, 7rem);
+    font-weight: 300; line-height: 0.96;
+    color: var(--ink); letter-spacing: -0.03em;
+    margin-bottom: 6px;
+  }
+  .hero h1 strong {
+    font-weight: 700; display: block;
+    color: var(--navy);
+  }
+  .hero-rule {
+    width: 64px; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--blue-bd));
+    margin: 28px 0; border-radius: 2px;
+  }
+  .hero-desc {
+    font-size: 1.05rem; color: var(--muted); line-height: 1.8;
+    max-width: 560px; margin-bottom: 44px; font-weight: 300;
+  }
+  .hero-desc b { color: var(--ink2); font-weight: 500; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  background:rgba(6,10,18,0.85);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  padding:0 56px;height:64px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.nav-logo{
-  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
-  color:var(--white);text-decoration:none;letter-spacing:0.04em;
-  display:flex;align-items:center;gap:10px;
-}
-.nav-logo-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--cyan);
-  box-shadow:0 0 12px var(--cyan);
-  animation:breathe 2.5s ease-in-out infinite;
-}
-@keyframes breathe{
-  0%,100%{box-shadow:0 0 8px var(--cyan),0 0 16px var(--cyan-glow);}
-  50%{box-shadow:0 0 20px var(--cyan),0 0 40px var(--cyan-glow);}
-}
-.nav-links{display:flex;gap:36px;list-style:none;}
-.nav-links a{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.7rem;font-weight:500;
-  letter-spacing:0.12em;text-transform:uppercase;
-  color:var(--muted);text-decoration:none;
-  transition:color 0.2s;position:relative;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-4px;left:0;right:0;
-  height:1px;background:var(--cyan);
-  transform:scaleX(0);transition:transform 0.2s;
-}
-.nav-links a:hover{color:var(--cyan);}
-.nav-links a:hover::after{transform:scaleX(1);}
+  .btn-primary {
+    background: var(--navy); color: var(--white);
+    padding: 13px 30px; border-radius: 6px;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+    box-shadow: 0 2px 8px rgba(26,48,85,0.25);
+  }
+  .btn-primary:hover { background: var(--blue); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(30,90,220,0.3); }
+  .btn-ghost {
+    border: 1.5px solid var(--border2); color: var(--ink2);
+    padding: 12px 28px; border-radius: 6px;
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+    text-decoration: none; transition: all 0.2s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); transform: translateY(-1px); }
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:100px 56px 80px;
-  position:relative;overflow:hidden;
-}
-/* Animated gradient orbs */
-.hero::before{
-  content:'';
-  position:absolute;top:-20%;right:-10%;
-  width:700px;height:700px;border-radius:50%;
-  background:radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
-  animation:orbFloat 8s ease-in-out infinite;
-  pointer-events:none;
-}
-.hero::after{
-  content:'';
-  position:absolute;bottom:-20%;left:-10%;
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle, rgba(0,255,163,0.05) 0%, transparent 70%);
-  animation:orbFloat 10s ease-in-out infinite reverse;
-  pointer-events:none;
-}
-@keyframes orbFloat{
-  0%,100%{transform:translate(0,0) scale(1);}
-  33%{transform:translate(40px,-30px) scale(1.05);}
-  66%{transform:translate(-20px,20px) scale(0.98);}
-}
-/* Grid lines in background */
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-}
+  /* stat tower */
+  .hero-stats { display: flex; flex-direction: column; gap: 0; min-width: 220px; }
+  .hstat {
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    border-radius: 0; margin-top: -1px;
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s, z-index 0.2s;
+    position: relative;
+  }
+  .hstat:first-child { border-radius: 10px 10px 0 0; margin-top: 0; }
+  .hstat:last-child  { border-radius: 0 0 10px 10px; }
+  .hstat:hover { border-color: var(--blue-bd); box-shadow: var(--shadow-md); z-index: 2; }
+  .hstat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.4rem; font-weight: 700; color: var(--navy); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .hstat-label { font-size: 0.72rem; color: var(--muted); line-height: 1.4; font-weight: 400; }
 
-.hero-inner{
-  position:relative;z-index:1;
-  display:grid;grid-template-columns:1fr 420px;gap:80px;
-  align-items:center;max-width:1280px;margin:0 auto;width:100%;
-}
-.hero-eyebrow{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:28px;
-}
-.hero-eyebrow-line{
-  width:40px;height:1px;background:var(--cyan);
-  box-shadow:0 0 8px var(--cyan);
-}
-.hero-eyebrow span{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.68rem;color:var(--cyan);
-  letter-spacing:0.2em;text-transform:uppercase;font-weight:500;
-}
-.hero h1{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:clamp(3.5rem,6vw,7rem);
-  line-height:0.95;letter-spacing:-0.02em;
-  color:var(--white);margin-bottom:24px;
-}
-.hero h1 .name-line2{
-  color:transparent;
-  -webkit-text-stroke:2px var(--cyan);
-  text-shadow:0 0 40px var(--cyan-glow);
-}
-.hero-role{
-  font-family:'Outfit',sans-serif;font-size:1rem;font-weight:400;
-  color:var(--muted);margin-bottom:28px;
-  display:flex;align-items:center;gap:12px;
-}
-.hero-role strong{color:var(--white);font-weight:500;}
-.role-sep{color:var(--border);font-size:0.7rem;}
-.hero-desc{
-  font-size:0.95rem;color:#8899bb;line-height:1.8;
-  max-width:540px;margin-bottom:48px;
-}
-.hero-cta{display:flex;gap:16px;flex-wrap:wrap;}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:10px;
-  background:var(--cyan);color:var(--bg);
-  padding:14px 32px;border-radius:3px;
-  font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
-  transition:all 0.2s;
-  box-shadow:0 0 20px rgba(0,229,255,0.3);
-}
-.btn-primary:hover{
-  background:var(--white);
-  box-shadow:0 0 40px rgba(0,229,255,0.5);
-  transform:translateY(-2px);
-}
-.btn-outline{
-  display:inline-flex;align-items:center;gap:10px;
-  border:1px solid var(--border);color:var(--white);
-  padding:13px 32px;border-radius:3px;
-  font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;
-  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
-  transition:all 0.2s;backdrop-filter:blur(8px);
-}
-.btn-outline:hover{
-  border-color:var(--cyan);color:var(--cyan);
-  box-shadow:0 0 20px rgba(0,229,255,0.15);
-}
+  /* ── SHARED SECTION ── */
+  section {
+    padding: 90px 60px;
+    max-width: 1300px; margin: 0 auto;
+  }
+  .sec-header { margin-bottom: 52px; }
+  .sec-kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem; font-weight: 500; color: var(--blue);
+    letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .sec-kicker::before {
+    content: ''; display: inline-block;
+    width: 20px; height: 1.5px; background: var(--blue);
+  }
+  .sec-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    font-weight: 300; color: var(--ink); letter-spacing: -0.025em; line-height: 1.1;
+  }
+  .sec-title em { font-style: italic; color: var(--navy); }
 
-/* Hero stats */
-.hero-stats{display:flex;flex-direction:column;gap:3px;}
-.stat-card{
-  background:var(--card-bg);
-  border:1px solid var(--border-soft);
-  border-radius:4px;padding:20px 24px;
-  position:relative;overflow:hidden;
-  transition:all 0.25s;
-  backdrop-filter:blur(12px);
-}
-.stat-card::before{
-  content:'';position:absolute;top:0;left:0;
-  width:3px;height:100%;
-  background:linear-gradient(to bottom,var(--cyan),transparent);
-}
-.stat-card:hover{
-  border-color:var(--border);
-  box-shadow:0 0 30px rgba(0,229,255,0.08);
-  transform:translateX(4px);
-}
-.stat-num{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:2.4rem;line-height:1;color:var(--cyan);
-  text-shadow:0 0 20px var(--cyan-glow);
-}
-.stat-label{
-  font-size:0.72rem;color:var(--muted);margin-top:4px;
-  font-family:'JetBrains Mono',monospace;letter-spacing:0.04em;
-}
+  /* ── DIVIDER ── */
+  hr.section-div {
+    border: none; border-top: 1px solid var(--border);
+    max-width: 1300px; margin: 0 auto;
+  }
 
-/* ── DIVIDER ── */
-.divider{
-  height:1px;
-  background:linear-gradient(90deg, transparent, var(--border), transparent);
-  margin:0;
-}
+  /* ── EDUCATION ── */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .edu-card {
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 32px 32px 28px;
+    background: var(--white); position: relative; overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.22s, transform 0.22s;
+  }
+  .edu-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), #6fa3f7);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+  }
+  .edu-card:hover { border-color: var(--blue-bd); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .edu-card:hover::before { transform: scaleX(1); }
+  .edu-pill {
+    display: inline-block;
+    background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-bd);
+    border-radius: 20px; padding: 3px 12px;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .edu-degree {
+    font-family: 'Fraunces', serif; font-size: 1.25rem;
+    font-weight: 600; color: var(--ink); margin-bottom: 6px; line-height: 1.2;
+  }
+  .edu-school { font-size: 0.87rem; color: var(--muted); margin-bottom: 10px; }
+  .edu-year {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem; color: var(--faint); letter-spacing: 0.06em;
+  }
 
-/* ── SECTIONS ── */
-section{
-  padding:96px 56px;
-  max-width:1280px;margin:0 auto;
-}
-.section-label{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:16px;
-}
-.section-label span{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.65rem;font-weight:600;
-  letter-spacing:0.2em;text-transform:uppercase;
-  color:var(--cyan);
-}
-.section-label::after{
-  content:'';flex:1;height:1px;
-  background:linear-gradient(90deg,var(--border),transparent);
-}
-.section-title{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:clamp(2.2rem,4vw,3.2rem);
-  line-height:1.05;margin-bottom:56px;
-  letter-spacing:-0.02em;
-}
-.section-title em{
-  font-style:normal;color:transparent;
-  -webkit-text-stroke:1.5px var(--cyan);
-}
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; }
+  .tl-item {
+    display: grid; grid-template-columns: 220px 1fr;
+    padding: 48px 0; border-top: 1px solid var(--border);
+    position: relative; transition: background 0.25s;
+  }
+  .tl-item:last-child { border-bottom: 1px solid var(--border); }
+  .tl-item::before {
+    content: ''; position: absolute; left: -60px; top: 0; bottom: 0; right: -60px;
+    background: var(--off); opacity: 0; transition: opacity 0.25s; z-index: -1;
+    border-radius: 4px;
+  }
+  .tl-item:hover::before { opacity: 1; }
+  .tl-meta { padding-right: 40px; padding-top: 4px; }
+  .tl-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem; color: var(--blue);
+    letter-spacing: 0.05em; margin-bottom: 10px;
+  }
+  .tl-co {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 4px;
+  }
+  .tl-loc { font-size: 0.72rem; color: var(--faint); }
 
-/* ── EDUCATION ── */
-.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.edu-card{
-  background:var(--card-bg);border:1px solid var(--border-soft);
-  border-radius:4px;padding:32px 28px;
-  position:relative;overflow:hidden;
-  transition:all 0.25s;backdrop-filter:blur(12px);
-}
-.edu-card::after{
-  content:'';position:absolute;
-  top:-40px;right:-40px;
-  width:120px;height:120px;border-radius:50%;
-  background:radial-gradient(circle,rgba(0,229,255,0.06),transparent 70%);
-  transition:all 0.4s;
-}
-.edu-card:hover{border-color:var(--border);box-shadow:0 0 40px rgba(0,229,255,0.07);}
-.edu-card:hover::after{opacity:2;transform:scale(1.5);}
-.edu-tag{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.6rem;font-weight:600;letter-spacing:0.15em;
-  text-transform:uppercase;color:var(--cyan);
-  background:var(--cyan-dim);border:1px solid rgba(0,229,255,0.2);
-  display:inline-block;padding:3px 10px;border-radius:2px;
-  margin-bottom:14px;
-}
-.edu-degree{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:1.25rem;color:var(--white);
-  margin-bottom:6px;line-height:1.25;
-}
-.edu-school{font-size:0.85rem;color:#8899bb;margin-bottom:8px;}
-.edu-year{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.68rem;color:var(--muted);
-  letter-spacing:0.08em;
-}
+  .tl-body { padding-left: 48px; border-left: 2px solid var(--border); }
+  .tl-item:hover .tl-body { border-left-color: var(--blue-bd); }
+  .tl-role {
+    font-family: 'Fraunces', serif; font-size: 1.5rem;
+    font-weight: 600; color: var(--ink); margin-bottom: 20px; line-height: 1.2;
+  }
+  .tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+  .tl-bullets li {
+    font-size: 0.9rem; color: var(--muted); line-height: 1.7;
+    padding-left: 18px; position: relative; font-weight: 300;
+  }
+  .tl-bullets li::before {
+    content: ''; position: absolute; left: 0; top: 10px;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--blue-bd);
+  }
+  .chip {
+    display: inline-block;
+    background: var(--amber-bg); color: var(--amber);
+    border-radius: 4px; padding: 1px 7px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.67rem; font-weight: 500;
+    margin-left: 4px; vertical-align: middle;
+    border: 1px solid #fcd28b;
+  }
 
-/* ── EXPERIENCE TIMELINE ── */
-.timeline{display:flex;flex-direction:column;}
-.timeline-item{
-  display:grid;grid-template-columns:200px 1fr;
-  border-top:1px solid var(--border-soft);
-  padding:40px 0;gap:0;
-  position:relative;
-  transition:all 0.2s;
-}
-.timeline-item:last-child{border-bottom:1px solid var(--border-soft);}
-.timeline-meta{padding-right:40px;}
-.timeline-period{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.65rem;font-weight:600;color:var(--cyan);
-  letter-spacing:0.08em;margin-bottom:8px;
-}
-.timeline-company{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:0.75rem;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--white);margin-bottom:4px;
-}
-.timeline-location{
-  font-size:0.7rem;color:var(--muted);font-family:'JetBrains Mono',monospace;
-}
-.timeline-content{
-  padding-left:40px;
-  border-left:1px solid var(--border-soft);
-  transition:border-color 0.2s;
-}
-.timeline-item:hover .timeline-content{border-color:rgba(0,229,255,0.3);}
-.timeline-role{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:1.4rem;color:var(--white);
-  margin-bottom:18px;line-height:1.2;
-}
-.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.timeline-bullets li{
-  font-size:0.875rem;color:#8899bb;line-height:1.7;
-  padding-left:20px;position:relative;
-}
-.timeline-bullets li::before{
-  content:'//';position:absolute;left:0;
-  color:var(--cyan);font-family:'JetBrains Mono',monospace;
-  font-size:0.62rem;font-weight:600;top:4px;
-}
-.impact-tag{
-  display:inline-block;
-  background:rgba(0,255,163,0.08);
-  color:var(--green);
-  border:1px solid rgba(0,255,163,0.2);
-  border-radius:2px;padding:1px 8px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.67rem;font-weight:600;
-  margin-left:4px;vertical-align:middle;
-}
+  /* ── SKILLS ── */
+  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+  .sg-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem; font-weight: 500; color: var(--blue);
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
+  }
+  .skill-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill {
+    background: var(--off); border: 1px solid var(--border);
+    border-radius: 6px; padding: 7px 14px;
+    font-size: 0.8rem; color: var(--ink2); font-weight: 400;
+    transition: all 0.18s; cursor: default;
+  }
+  .skill-pill:hover {
+    background: var(--blue-bg); border-color: var(--blue-bd);
+    color: var(--blue); transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
 
-/* ── SKILLS ── */
-.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-.skill-group{
-  background:var(--card-bg);border:1px solid var(--border-soft);
-  border-radius:4px;padding:28px;
-  backdrop-filter:blur(12px);
-  transition:all 0.25s;
-}
-.skill-group:hover{border-color:var(--border);box-shadow:0 0 30px rgba(0,229,255,0.06);}
-.skill-group-title{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.65rem;font-weight:600;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--cyan);
-  margin-bottom:18px;padding-bottom:12px;
-  border-bottom:1px solid var(--border-soft);
-}
-.skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.skill-tag{
-  background:rgba(255,255,255,0.03);
-  border:1px solid var(--border-soft);
-  border-radius:2px;padding:6px 13px;
-  font-size:0.77rem;color:#8899bb;font-weight:400;
-  transition:all 0.2s;
-  font-family:'Outfit',sans-serif;
-}
-.skill-tag:hover{
-  border-color:rgba(0,229,255,0.4);
-  color:var(--cyan);
-  background:var(--cyan-dim);
-  box-shadow:0 0 12px rgba(0,229,255,0.1);
-}
+  /* ── PATENTS ── */
+  .patent-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    margin-bottom: 36px; background: var(--white);
+  }
+  .pb-item {
+    padding: 20px 18px; text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .pb-item:last-child { border-right: none; }
+  .pb-num {
+    font-family: 'Fraunces', serif; font-size: 1.9rem;
+    font-weight: 700; color: var(--navy); line-height: 1; display: block;
+  }
+  .pb-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.63rem; color: var(--faint);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 5px; display: block;
+  }
+  .patent-cats { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+  .pcat {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 20px; border: 1px solid;
+    font-size: 0.73rem; font-weight: 500;
+  }
+  .pcat-a { background: var(--blue-bg); border-color: var(--blue-bd); color: var(--blue); }
+  .pcat-b { background: var(--amber-bg); border-color: #fcd28b; color: var(--amber); }
+  .pcat-c { background: var(--gray-50); border-color: var(--border2); color: var(--muted); }
 
-/* ── PATENTS ── */
-.patent-stats{
-  display:flex;gap:0;
-  background:var(--card-bg);
-  border:1px solid var(--border-soft);
-  border-radius:4px;overflow:hidden;
-  margin-bottom:32px;
-  backdrop-filter:blur(12px);
-}
-.pstat{flex:1;text-align:center;padding:22px 12px;}
-.pstat-divider{width:1px;background:var(--border-soft);flex-shrink:0;}
-.pstat-num{
-  display:block;
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:1.9rem;color:var(--cyan);line-height:1;
-  text-shadow:0 0 16px var(--cyan-glow);
-}
-.pstat-label{
-  display:block;font-family:'JetBrains Mono',monospace;
-  font-size:0.6rem;color:var(--muted);
-  text-transform:uppercase;letter-spacing:0.1em;margin-top:5px;
-}
-.patent-categories{display:flex;gap:10px;margin-bottom:32px;flex-wrap:wrap;}
-.pcat{
-  display:flex;align-items:center;gap:8px;
-  padding:7px 16px;border-radius:2px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.68rem;font-weight:500;
-  border:1px solid;
-}
-.pcat-rag{background:rgba(0,229,255,0.06);border-color:rgba(0,229,255,0.25);color:var(--cyan);}
-.pcat-genai{background:rgba(255,255,255,0.03);border-color:var(--border-soft);color:#8899bb;}
-.pcat-fair{background:rgba(0,255,163,0.06);border-color:rgba(0,255,163,0.2);color:var(--green);}
+  .patents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .p-card {
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 26px 28px; background: var(--white);
+    position: relative; transition: border-color 0.2s, box-shadow 0.22s, transform 0.22s;
+    overflow: hidden;
+  }
+  .p-card::after {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px; background: var(--blue); opacity: 0; transition: opacity 0.22s;
+  }
+  .p-card:hover { border-color: var(--blue-bd); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .p-card:hover::after { opacity: 1; }
+  .p-card.featured { border-color: var(--blue-bd); background: linear-gradient(135deg, var(--white) 0%, var(--blue-bg) 100%); }
+  .p-card.featured::after { opacity: 0.6; }
+  .p-badge {
+    display: inline-block; background: var(--blue); color: var(--white);
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 20px;
+    margin-bottom: 12px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .p-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem;
+    color: var(--faint); letter-spacing: 0.1em; margin-bottom: 9px;
+    text-transform: uppercase;
+  }
+  .p-card.featured .p-num { color: var(--blue); }
+  .p-title {
+    font-family: 'Fraunces', serif; font-size: 1.05rem;
+    font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.3;
+  }
+  .p-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .p-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .ptag {
+    background: var(--blue-bg); border: 1px solid var(--blue-bd);
+    border-radius: 4px; padding: 3px 9px; font-size: 0.67rem;
+    color: var(--blue); font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .p-card-wide {
+    grid-column: 1 / -1;
+    background: var(--navy) !important;
+    border-color: var(--navy) !important;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .p-card-wide::after { background: #4a90e2; }
+  .p-card-wide .p-num { color: rgba(255,255,255,0.4) !important; }
+  .p-card-wide .p-title { color: var(--white) !important; font-size: 1.15rem !important; }
+  .p-card-wide .p-desc { color: rgba(255,255,255,0.6) !important; }
+  .p-wide-count {
+    font-family: 'Fraunces', serif; font-size: 4.5rem;
+    font-weight: 700; color: rgba(255,255,255,0.12); line-height: 1;
+    flex-shrink: 0; text-align: center;
+  }
+  .p-wide-count span {
+    display: block; font-size: 0.68rem; font-weight: 400;
+    color: rgba(255,255,255,0.4); font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.1em; text-transform: uppercase; margin-top: -6px;
+  }
 
-.patents-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.patent-card{
-  background:var(--card-bg);border:1px solid var(--border-soft);
-  border-radius:4px;padding:26px;
-  position:relative;overflow:hidden;
-  transition:all 0.25s;backdrop-filter:blur(12px);
-}
-.patent-card:hover{
-  border-color:rgba(0,229,255,0.3);
-  box-shadow:0 0 40px rgba(0,229,255,0.07);
-  transform:translateY(-2px);
-}
-.patent-card.patent-featured{
-  border-color:rgba(0,229,255,0.25);
-  background:linear-gradient(135deg,rgba(0,229,255,0.04) 0%,var(--card-bg) 60%);
-}
-.patent-badge{
-  display:inline-block;
-  background:var(--cyan);color:var(--bg);
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.58rem;font-weight:700;letter-spacing:0.12em;
-  text-transform:uppercase;padding:3px 10px;
-  border-radius:2px;margin-bottom:10px;
-}
-.patent-number{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.62rem;color:var(--cyan);
-  letter-spacing:0.1em;margin-bottom:10px;font-weight:500;
-}
-.patent-title{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:1.05rem;color:var(--white);
-  margin-bottom:10px;line-height:1.3;
-}
-.patent-desc{font-size:0.82rem;color:var(--muted);line-height:1.65;}
-.patent-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
-.ptag{
-  background:rgba(255,255,255,0.03);
-  border:1px solid var(--border-soft);
-  border-radius:2px;padding:3px 9px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.62rem;color:var(--muted);font-weight:500;
-}
-.patent-featured .ptag{
-  background:var(--cyan-dim);
-  border-color:rgba(0,229,255,0.2);color:var(--cyan);
-}
-.patent-more{
-  grid-column:1 / -1;
-  background:linear-gradient(135deg,rgba(0,229,255,0.08) 0%,rgba(0,255,163,0.04) 100%);
-  border-color:rgba(0,229,255,0.2);
-}
-.patent-more:hover{transform:none;}
-.patent-more .patent-number{color:var(--cyan);}
-.patent-more .patent-title{color:var(--white);}
-.patent-more .patent-desc{color:var(--muted);}
+  /* ── CONTACT ── */
+  .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-links { display: flex; flex-direction: column; }
+  .c-link {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 0; border-bottom: 1px solid var(--border);
+    text-decoration: none; transition: all 0.2s; position: relative; overflow: hidden;
+  }
+  .c-link::after {
+    content: '↗'; position: absolute; right: 4px;
+    font-size: 0.85rem; color: var(--blue); opacity: 0;
+    transition: opacity 0.2s, transform 0.2s; transform: translate(-4px, 4px);
+  }
+  .c-link:hover { padding-left: 8px; }
+  .c-link:hover::after { opacity: 1; transform: translate(0, 0); }
+  .c-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--off); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0; color: var(--navy);
+    font-family: 'Fraunces', serif; font-weight: 600;
+    transition: all 0.2s;
+  }
+  .c-link:hover .c-icon { background: var(--blue-bg); border-color: var(--blue-bd); color: var(--blue); }
+  .c-label { font-size: 0.9rem; color: var(--ink2); font-weight: 400; transition: color 0.2s; }
+  .c-link:hover .c-label { color: var(--blue); }
+  .c-sub { font-size: 0.7rem; color: var(--faint); margin-top: 1px; font-family: 'IBM Plex Mono', monospace; }
+  .contact-right { padding-top: 8px; }
+  .contact-headline {
+    font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 300;
+    color: var(--ink); line-height: 1.35; margin-bottom: 20px; letter-spacing: -0.02em;
+  }
+  .contact-headline em { font-style: italic; color: var(--navy); font-weight: 400; }
+  .contact-note { font-size: 0.9rem; color: var(--muted); line-height: 1.8; font-weight: 300; }
 
-/* ── CONTACT ── */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
-.contact-link{
-  display:flex;align-items:center;gap:16px;
-  text-decoration:none;padding:16px 0;
-  border-bottom:1px solid var(--border-soft);
-  transition:all 0.2s;
-}
-.contact-link:hover{padding-left:8px;}
-.contact-link:hover .contact-link-label{color:var(--cyan);}
-.contact-icon{
-  width:38px;height:38px;border-radius:3px;
-  background:var(--card-bg);border:1px solid var(--border-soft);
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.85rem;flex-shrink:0;
-  font-family:'JetBrains Mono',monospace;
-  color:var(--cyan);font-weight:600;font-size:0.7rem;
-  transition:all 0.2s;
-}
-.contact-link:hover .contact-icon{
-  border-color:rgba(0,229,255,0.4);
-  box-shadow:0 0 16px rgba(0,229,255,0.15);
-}
-.contact-link-label{font-size:0.9rem;color:#8899bb;transition:color 0.2s;}
-.contact-link-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);margin-top:2px;}
-.contact-tagline{
-  font-family:'Syne',sans-serif;font-weight:700;
-  font-size:1.6rem;color:var(--white);
-  line-height:1.35;margin-bottom:20px;letter-spacing:-0.01em;
-}
-.contact-tagline em{font-style:normal;color:var(--cyan);}
-.contact-body{font-size:0.88rem;color:var(--muted);line-height:1.75;}
+  /* ── CHATBOT ── */
+  .fab {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 56px; height: 56px; border-radius: 14px;
+    background: var(--navy); color: var(--white);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; z-index: 200;
+    box-shadow: 0 4px 20px rgba(26,48,85,0.35);
+    transition: all 0.2s;
+  }
+  .fab:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(30,90,220,0.35); }
+  .chat-panel {
+    position: fixed; bottom: 102px; right: 32px;
+    width: 376px; max-height: 560px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: var(--shadow-lg);
+    display: flex; flex-direction: column; z-index: 200;
+    transform: scale(0.92) translateY(16px); opacity: 0; pointer-events: none;
+    transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .chat-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+  .chat-head {
+    padding: 16px 20px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 12px;
+    background: var(--off); border-radius: 16px 16px 0 0;
+  }
+  .chat-av {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+  .online-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block; margin-right: 5px; }
+  .chat-head-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+  .chat-head-sub { font-size: 0.68rem; color: var(--muted); font-family: 'IBM Plex Mono', monospace; }
+  .chat-x { margin-left: auto; background: none; border: none; cursor: pointer; color: var(--faint); font-size: 1rem; width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .chat-x:hover { background: var(--border); color: var(--ink); }
+  .chat-msgs { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; min-height: 0; }
+  .chat-msgs::-webkit-scrollbar { width: 3px; }
+  .chat-msgs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .msg { max-width: 84%; padding: 10px 14px; border-radius: 10px; font-size: 0.84rem; line-height: 1.55; }
+  .msg-bot { background: var(--off); border: 1px solid var(--border); color: var(--ink2); border-radius: 4px 10px 10px 10px; align-self: flex-start; }
+  .msg-user { background: var(--navy); color: var(--white); border-radius: 10px 4px 10px 10px; align-self: flex-end; }
+  .typing { display: flex; gap: 4px; align-items: center; padding: 14px 16px; background: var(--off); border: 1px solid var(--border); border-radius: 4px 10px 10px 10px; align-self: flex-start; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--faint); animation: bob 1.2s infinite; }
+  .dot:nth-child(2){animation-delay:.2s}.dot:nth-child(3){animation-delay:.4s}
+  @keyframes bob{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+  .chat-foot { padding: 12px 14px; border-top: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-end; }
+  .chat-in { flex: 1; border: 1px solid var(--border); border-radius: 8px; padding: 9px 13px; font-size: 0.84rem; font-family: 'Figtree', sans-serif; color: var(--ink); background: var(--white); resize: none; outline: none; max-height: 80px; transition: border-color 0.2s; }
+  .chat-in:focus { border-color: var(--blue-bd); box-shadow: 0 0 0 3px var(--blue-bg); }
+  .chat-send { width: 36px; height: 36px; border-radius: 8px; background: var(--navy); color: var(--white); border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.18s; }
+  .chat-send:hover { background: var(--blue); }
+  .chat-brand { text-align: center; padding: 7px; font-size: 0.62rem; color: var(--faint); font-family: 'IBM Plex Mono', monospace; }
 
-/* ── FOOTER ── */
-footer{
-  background:var(--bg2);
-  border-top:1px solid var(--border-soft);
-  padding:36px 56px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.footer-logo{
-  font-family:'Syne',sans-serif;font-weight:800;
-  font-size:1rem;color:var(--white);
-  display:flex;align-items:center;gap:8px;
-}
-.footer-logo-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--cyan);box-shadow:0 0 8px var(--cyan);
-}
-footer p{
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.65rem;color:var(--muted);letter-spacing:0.06em;
-}
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: rgba(255,255,255,0.45);
+    padding: 32px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .foot-brand { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--white); font-weight: 400; }
+  .foot-brand span { color: rgba(255,255,255,0.35); }
+  footer p { font-size: 0.72rem; font-family: 'IBM Plex Mono', monospace; }
 
-/* ── CHATBOT ── */
-.chat-fab{
-  position:fixed;bottom:32px;right:32px;
-  width:56px;height:56px;border-radius:50%;
-  background:var(--cyan);color:var(--bg);
-  border:none;font-size:1.3rem;
-  display:flex;align-items:center;justify-content:center;
-  z-index:300;
-  box-shadow:0 0 24px var(--cyan-glow),0 8px 32px rgba(0,0,0,0.4);
-  transition:all 0.2s;
-  animation:breathe 2.5s ease-in-out infinite;
-}
-.chat-fab:hover{transform:scale(1.08);background:var(--white);}
-.chat-panel{
-  position:fixed;bottom:104px;right:32px;
-  width:380px;max-height:560px;
-  background:var(--bg2);
-  border:1px solid var(--border);border-radius:8px;
-  box-shadow:0 24px 80px rgba(0,0,0,0.6),0 0 60px rgba(0,229,255,0.06);
-  display:flex;flex-direction:column;
-  z-index:300;
-  transform:scale(0.9) translateY(20px);opacity:0;pointer-events:none;
-  transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);
-}
-.chat-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}
-.chat-header{
-  padding:16px 18px;border-bottom:1px solid var(--border-soft);
-  display:flex;align-items:center;gap:12px;
-}
-.chat-avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--cyan-dim);border:1px solid rgba(0,229,255,0.3);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1rem;flex-shrink:0;
-}
-.chat-status-dot{
-  width:7px;height:7px;border-radius:50%;background:#00ff9d;
-  display:inline-block;margin-right:6px;animation:breathe 2s infinite;
-}
-.chat-header-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;color:var(--white);}
-.chat-header-sub{font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);}
-.chat-close{
-  margin-left:auto;background:none;border:none;
-  color:var(--muted);font-size:1rem;width:28px;height:28px;
-  border-radius:4px;display:flex;align-items:center;justify-content:center;
-  transition:all 0.15s;
-}
-.chat-close:hover{background:rgba(255,255,255,0.05);color:var(--white);}
-.chat-messages{
-  flex:1;overflow-y:auto;padding:14px;
-  display:flex;flex-direction:column;gap:10px;min-height:0;
-}
-.chat-messages::-webkit-scrollbar{width:3px;}
-.chat-messages::-webkit-scrollbar-track{background:transparent;}
-.chat-messages::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
-.msg{max-width:87%;padding:10px 14px;border-radius:6px;font-size:0.83rem;line-height:1.55;}
-.msg-bot{
-  background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);
-  color:#8899bb;border-radius:2px 8px 8px 8px;align-self:flex-start;
-}
-.msg-user{
-  background:var(--cyan);color:var(--bg);
-  border-radius:8px 2px 8px 8px;align-self:flex-end;font-weight:500;
-}
-.msg-typing{
-  display:flex;gap:4px;align-items:center;padding:14px;
-  background:rgba(255,255,255,0.04);border:1px solid var(--border-soft);
-  border-radius:2px 8px 8px 8px;align-self:flex-start;
-}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:bounce 1.2s infinite;}
-.dot:nth-child(2){animation-delay:0.2s;}
-.dot:nth-child(3){animation-delay:0.4s;}
-@keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
-.chat-input-area{
-  padding:12px 14px;border-top:1px solid var(--border-soft);
-  display:flex;gap:8px;align-items:flex-end;
-}
-.chat-input{
-  flex:1;border:1px solid var(--border-soft);border-radius:4px;
-  padding:9px 13px;font-size:0.83rem;font-family:'Outfit',sans-serif;
-  color:var(--white);background:rgba(255,255,255,0.04);resize:none;
-  outline:none;transition:border-color 0.2s;max-height:80px;overflow-y:auto;
-}
-.chat-input:focus{border-color:rgba(0,229,255,0.4);}
-.chat-input::placeholder{color:var(--muted);}
-.chat-send{
-  width:36px;height:36px;border-radius:4px;
-  background:var(--cyan);color:var(--bg);
-  border:none;display:flex;align-items:center;justify-content:center;
-  font-size:0.85rem;transition:all 0.2s;flex-shrink:0;
-  font-weight:700;
-}
-.chat-send:hover{background:var(--white);}
-.chat-branding{
-  text-align:center;padding:8px;
-  font-family:'JetBrains Mono',monospace;
-  font-size:0.6rem;color:rgba(107,122,153,0.5);letter-spacing:0.08em;
-}
+  /* ── FADE-IN ── */
+  .fi { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .fi.in { opacity: 1; transform: translateY(0); }
 
-/* ── FADE IN ── */
-.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
-.fade-in.visible{opacity:1;transform:translateY(0);}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){
-  nav{padding:0 24px;}
-  .nav-links{display:none;}
-  .hero{padding:100px 24px 60px;}
-  .hero-inner{grid-template-columns:1fr;gap:40px;}
-  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  section{padding:64px 24px;}
-  .skills-grid,.patents-grid,.education-grid,.contact-grid{grid-template-columns:1fr;}
-  .timeline-item{grid-template-columns:1fr;}
-  .timeline-content{padding-left:0;border-left:none;padding-top:16px;}
-  footer{flex-direction:column;gap:12px;text-align:center;padding:24px;}
-  .chat-panel{width:calc(100vw - 32px);right:16px;bottom:88px;}
-}
+  /* ── RESPONSIVE ── */
+  @media(max-width:960px){
+    nav{padding:0 24px;} .nav-links{display:none;}
+    .hero{grid-template-columns:1fr;padding:100px 24px 60px;gap:48px;}
+    .hero-stats{flex-direction:row;flex-wrap:wrap;}
+    .hstat{flex:1;min-width:140px;border-radius:10px!important;margin-top:0;}
+    section{padding:64px 24px;}
+    .edu-grid,.skills-grid,.patents-grid,.contact-wrap{grid-template-columns:1fr;}
+    .tl-item{grid-template-columns:1fr;}
+    .tl-body{padding-left:0;border-left:none;padding-top:16px;border-top:1px solid var(--border);margin-top:16px;}
+    .patent-bar{grid-template-columns:1fr 1fr;}
+    .pb-item:nth-child(2){border-right:none;} .pb-item:nth-child(3){border-top:1px solid var(--border);}
+    footer{flex-direction:column;gap:10px;text-align:center;padding:24px;}
+    .chat-panel{width:calc(100vw - 32px);right:16px;}
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">
-    <div class="nav-logo-dot"></div>
-    SS_PORTFOLIO
+  <a class="nav-brand" href="#">
+    <div class="nav-monogram">SS</div>
+    <span class="nav-name">Sudhanshu Sharma</span>
   </a>
   <ul class="nav-links">
     <li><a href="#education">Education</a></li>
@@ -666,63 +512,54 @@ footer p{
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
-    <div class="fade-in">
-      <div class="hero-eyebrow">
-        <div class="hero-eyebrow-line"></div>
-        <span>Principal Data Scientist · AI Leader · Inventor</span>
-      </div>
-      <h1>
-        SUDHANSHU<br/>
-        <span class="name-line2">SHARMA</span>
-      </h1>
-      <div class="hero-role">
-        <strong>United Health Group (Optum)</strong>
-        <span class="role-sep">◆</span>
-        16+ Years in AI/ML
-      </div>
-      <p class="hero-desc">
-        Accomplished AI leader delivering transformative, enterprise-scale GenAI and NLP solutions across healthcare, retail, and banking. Proven track record of building high-performing teams, driving innovation, and generating measurable business impact through strategic AI initiatives.
-      </p>
-      <div class="hero-cta">
-        <a href="#experience" class="btn-primary">View Experience →</a>
-        <a href="#contact" class="btn-outline">Get in Touch</a>
-      </div>
+  <div class="fi">
+    <div class="hero-kicker">
+      <div class="kicker-dot"></div>
+      <span class="kicker-text">Principal Data Scientist &amp; AI Leader</span>
     </div>
-
-    <div class="hero-stats fade-in" style="animation-delay:0.15s">
-      <div class="stat-card">
-        <div class="stat-num">16+</div>
-        <div class="stat-label">// Years Experience</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">12</div>
-        <div class="stat-label">// US Patents Filed</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">3</div>
-        <div class="stat-label">// Industries Transformed</div>
-      </div>
+    <h1>Sudhanshu<br /><strong>Sharma</strong></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">
+      Accomplished AI leader with <b>16 years</b> of experience delivering transformative, enterprise-scale <b>GenAI and NLP solutions</b> across healthcare, retail, and banking. Proven track record of building high-performing teams, driving innovation, and generating measurable business impact.
+    </p>
+    <div class="hero-actions">
+      <a href="#experience" class="btn-primary">View Experience</a>
+      <a href="#contact" class="btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-stats fi" style="transition-delay:0.15s">
+    <div class="hstat">
+      <div class="hstat-num">16+</div>
+      <div class="hstat-label">Years of industry experience</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">12</div>
+      <div class="hstat-label">US Patents — GenAI, RAG &amp; Responsible AI</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">3</div>
+      <div class="hstat-label">Industries — Healthcare, Retail &amp; Banking</div>
     </div>
   </div>
 </div>
 
-<div class="divider"></div>
+<hr class="section-div" />
 
 <!-- EDUCATION -->
 <section id="education">
-  <div class="section-label fade-in"><span>01 // Academic Background</span></div>
-  <h2 class="section-title fade-in">Education &amp; <em>Credentials</em></h2>
-  <div class="education-grid">
-    <div class="edu-card fade-in">
-      <div class="edu-tag">Post Graduate</div>
+  <div class="sec-header fi">
+    <div class="sec-kicker">Academic Background</div>
+    <h2 class="sec-title">Education &amp; <em>Credentials</em></h2>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card fi">
+      <div class="edu-pill">Post Graduate</div>
       <div class="edu-degree">MBA — Marketing</div>
       <div class="edu-school">IMT Ghaziabad</div>
       <div class="edu-year">2009 — 2011</div>
     </div>
-    <div class="edu-card fade-in" style="animation-delay:0.1s">
-      <div class="edu-tag">Under Graduate</div>
+    <div class="edu-card fi" style="transition-delay:.1s">
+      <div class="edu-pill">Under Graduate</div>
       <div class="edu-degree">B.Tech — Computer Science</div>
       <div class="edu-school">Jamia Millia Islamia, New Delhi</div>
       <div class="edu-year">2003 — 2007</div>
@@ -730,104 +567,104 @@ footer p{
   </div>
 </section>
 
-<div class="divider"></div>
+<hr class="section-div" />
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label fade-in"><span>02 // Work History</span></div>
-  <h2 class="section-title fade-in">Career <em>Journey</em></h2>
-
+  <div class="sec-header fi">
+    <div class="sec-kicker">Work History</div>
+    <h2 class="sec-title">Career <em>Journey</em></h2>
+  </div>
   <div class="timeline">
 
-    <div class="timeline-item fade-in">
-      <div class="timeline-meta">
-        <div class="timeline-period">JAN 2022 — PRESENT</div>
-        <div class="timeline-company">United Health Group</div>
-        <div class="timeline-location">Optum · India</div>
+    <div class="tl-item fi">
+      <div class="tl-meta">
+        <div class="tl-period">Jan 2022 — Present</div>
+        <div class="tl-co">United Health Group</div>
+        <div class="tl-loc">Optum · India</div>
       </div>
-      <div class="timeline-content">
-        <div class="timeline-role">Principal Data Scientist</div>
-        <ul class="timeline-bullets">
+      <div class="tl-body">
+        <div class="tl-role">Principal Data Scientist</div>
+        <ul class="tl-bullets">
           <li>Built an autonomous coding agent using the ReAct framework to accelerate Clinical Quality Language (CQL) development — leveraging LangGraph for workflow orchestration and context-aware code generation.</li>
-          <li>Developed a scalable RAG-based mental &amp; emotional wellness Q&amp;A chatbot serving <span class="impact-tag">10,000+ members</span> under an Employee Assistance Program (EAP) with 24/7 support availability.</li>
-          <li>Developed an org-wide ServiceNow ticket deduplication solution using RAG architecture — delivering operational efficiency projected to generate <span class="impact-tag">$1M annual savings</span>.</li>
-          <li>Led development of ASR NLP pipelines, fine-tuning NVIDIA NeMo models to process <span class="impact-tag">500K+ calls/month</span> — resulting in increased scheduling rates and <span class="impact-tag">$40M annual savings</span>.</li>
-          <li>Invented ML fairness framework <strong>UnBAI</strong> — standardizing ethical AI evaluation across UHG. Senior inventor with <span class="impact-tag">12 US Patents</span> and established the UHG Innovation Center.</li>
+          <li>Developed a scalable RAG-based mental &amp; emotional wellness Q&amp;A chatbot serving <span class="chip">10,000+ members</span> under an Employee Assistance Program with 24/7 support availability.</li>
+          <li>Developed an org-wide ServiceNow ticket deduplication solution using RAG architecture — delivering operational efficiency projected to generate <span class="chip">$1M annual savings</span>.</li>
+          <li>Led development of ASR NLP pipelines, fine-tuning NVIDIA NeMo models to process <span class="chip">500K+ calls/month</span> — driving increased scheduling rates and <span class="chip">$40M annual savings</span>.</li>
+          <li>Invented ML fairness framework <strong>UnBAI</strong> — standardizing ethical AI evaluation across UHG. Senior inventor with <span class="chip">12 US Patents</span> and established the UHG Innovation Center.</li>
         </ul>
       </div>
     </div>
 
-    <div class="timeline-item fade-in">
-      <div class="timeline-meta">
-        <div class="timeline-period">DEC 2017 — DEC 2021</div>
-        <div class="timeline-company">Accenture</div>
-        <div class="timeline-location">Data Science CoE · India</div>
+    <div class="tl-item fi">
+      <div class="tl-meta">
+        <div class="tl-period">Dec 2017 — Dec 2021</div>
+        <div class="tl-co">Accenture</div>
+        <div class="tl-loc">Data Science CoE · India</div>
       </div>
-      <div class="timeline-content">
-        <div class="timeline-role">Associate Principal Data Scientist</div>
-        <ul class="timeline-bullets">
-          <li>Led a team of 6 data scientists within the Data Science Center of Excellence, driving strategic client relationships and delivering high-impact analytical solutions.</li>
-          <li>Built an ML-based Price Optimization &amp; Simulation tool for product managers — resulting in approximately <span class="impact-tag">$50M quarterly profitability</span> improvement based on model-recommended pricing.</li>
-          <li>Text classification for purchase order categorization using NLP for a Malaysian oil &amp; gas company.</li>
-          <li>Built a Talent Success Profile (TSP) app using NLP — boosting skill interview selection from <span class="impact-tag">20% → 60%</span>.</li>
+      <div class="tl-body">
+        <div class="tl-role">Associate Principal Data Scientist</div>
+        <ul class="tl-bullets">
+          <li>Led a team of 6 data scientists within the Data Science Center of Excellence, driving strategic client relationships and delivering high-impact analytical solutions across industries.</li>
+          <li>Built an ML-based Price Optimization &amp; Simulation tool enabling product managers to evaluate pricing impact — resulting in approximately <span class="chip">$50M quarterly profitability</span> improvement.</li>
         </ul>
       </div>
     </div>
 
-    <div class="timeline-item fade-in">
-      <div class="timeline-meta">
-        <div class="timeline-period">JUL 2016 — DEC 2017</div>
-        <div class="timeline-company">Mphasis</div>
-        <div class="timeline-location">Analytics Lead · India</div>
+    <div class="tl-item fi">
+      <div class="tl-meta">
+        <div class="tl-period">Jul 2016 — Dec 2017</div>
+        <div class="tl-co">Mphasis</div>
+        <div class="tl-loc">Analytics Lead · India</div>
       </div>
-      <div class="timeline-content">
-        <div class="timeline-role">Analytics Lead</div>
-        <ul class="timeline-bullets">
-          <li>Sales planning tool forecasting additional sales worth <span class="impact-tag">$1.2BN</span> across 11 markets for 22 Fuel &amp; Non-Fuel products.</li>
-          <li>Built an NPS Predictor app improving avg NPS score from <span class="impact-tag">5.2 → 7.4</span> for a South African retail company.</li>
+      <div class="tl-body">
+        <div class="tl-role">Analytics Lead</div>
+        <ul class="tl-bullets">
+          <li>Built a Talent Success Profile (TSP) app using NLP — boosting skill interview selection from <span class="chip">20% → 60%</span> and significantly reducing candidate processing time.</li>
+          <li>Sales planning tool forecasting additional sales worth <span class="chip">$1.2BN</span> across 11 markets and 22 Fuel &amp; Non-Fuel products.</li>
+          <li>Built an NPS Predictor app improving average NPS score from <span class="chip">5.2 → 7.4</span> for a South African retail company.</li>
         </ul>
       </div>
     </div>
 
-    <div class="timeline-item fade-in">
-      <div class="timeline-meta">
-        <div class="timeline-period">OCT 2014 — JUN 2016</div>
-        <div class="timeline-company">Tandurust</div>
-        <div class="timeline-location">FoodTech · Bangalore</div>
+    <div class="tl-item fi">
+      <div class="tl-meta">
+        <div class="tl-period">Oct 2014 — Jun 2016</div>
+        <div class="tl-co">Tandurust</div>
+        <div class="tl-loc">FoodTech · Bangalore</div>
       </div>
-      <div class="timeline-content">
-        <div class="timeline-role">Co-Founder</div>
-        <ul class="timeline-bullets">
-          <li>Co-founded <strong>Tandurust Healthy Food</strong> — An angel investor–funded(100k$) FoodTech company delivering nutritionist-endorsed, calorie-counted meals to healthy eaters in Bangalore on a subscription basis.</li>
+      <div class="tl-body">
+        <div class="tl-role">Co-Founder</div>
+        <ul class="tl-bullets">
+          <li>Co-founded <strong>Tandurust Healthy Food</strong> — an angel investor–funded FoodTech startup delivering nutritionist-endorsed, calorie-counted meals on subscription in Bangalore.</li>
         </ul>
       </div>
     </div>
 
-    <div class="timeline-item fade-in">
-      <div class="timeline-meta">
-        <div class="timeline-period">AUG 2011 — SEP 2014</div>
-        <div class="timeline-company">Mphasis</div>
-        <div class="timeline-location">Senior Analyst · India</div>
+    <div class="tl-item fi">
+      <div class="tl-meta">
+        <div class="tl-period">Aug 2011 — Sep 2014</div>
+        <div class="tl-co">Mphasis</div>
+        <div class="tl-loc">Senior Analyst · India</div>
       </div>
-      <div class="timeline-content">
-        <div class="timeline-role">Senior Analyst</div>
-        <ul class="timeline-bullets">
-          <li>Built SPIN (Sales Prediction &amp; Insights for New Deals) — forecasting sales worth <span class="impact-tag">$1BN</span> across major markets, improving accuracy from <span class="impact-tag">50% → 85%</span>.</li>
-          <li>Implemented complex financial dashboards in Power BI used by leadership for strategic reviews and revenue forecasting.</li>
+      <div class="tl-body">
+        <div class="tl-role">Senior Analyst</div>
+        <ul class="tl-bullets">
+          <li>Built SPIN (Sales Prediction &amp; Insights for New Deals) — forecasting sales worth <span class="chip">$1BN</span> across major markets, improving accuracy from <span class="chip">50% → 85%</span>.</li>
+          <li>Implemented complex financial dashboards in Power BI used by leadership for strategic revenue reviews.</li>
         </ul>
       </div>
     </div>
 
-    <div class="timeline-item fade-in">
-      <div class="timeline-meta">
-        <div class="timeline-period">JUN 2007 — JUN 2009</div>
-        <div class="timeline-company">CSC</div>
-        <div class="timeline-location">Business Analyst · India</div>
+    <div class="tl-item fi">
+      <div class="tl-meta">
+        <div class="tl-period">Jun 2007 — Jun 2009</div>
+        <div class="tl-co">CSC</div>
+        <div class="tl-loc">Business Analyst · India</div>
       </div>
-      <div class="timeline-content">
-        <div class="timeline-role">Business Analyst</div>
-        <ul class="timeline-bullets">
-          <li>Prepared requirement documents (BRD, FSD) for functional enhancements and features in planned product releases.</li>
+      <div class="tl-body">
+        <div class="tl-role">Business Analyst</div>
+        <ul class="tl-bullets">
+          <li>Prepared requirement documents (BRD, FSD) for functional enhancements and features across planned product releases.</li>
         </ul>
       </div>
     </div>
@@ -835,326 +672,242 @@ footer p{
   </div>
 </section>
 
-<div class="divider"></div>
+<hr class="section-div" />
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label fade-in"><span>03 // Technical Expertise</span></div>
-  <h2 class="section-title fade-in">Skills &amp; <em>Technologies</em></h2>
+  <div class="sec-header fi">
+    <div class="sec-kicker">Technical Expertise</div>
+    <h2 class="sec-title">Skills &amp; <em>Technologies</em></h2>
+  </div>
   <div class="skills-grid">
-    <div class="skill-group fade-in">
-      <div class="skill-group-title">AI &amp; Machine Learning</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Large Language Models</span>
-        <span class="skill-tag">GenAI</span>
-        <span class="skill-tag">RAG Systems</span>
-        <span class="skill-tag">LLM Fine-tuning</span>
-        <span class="skill-tag">Agentic AI</span>
-        <span class="skill-tag">LangGraph</span>
-        <span class="skill-tag">Transformers</span>
-        <span class="skill-tag">PyTorch</span>
-        <span class="skill-tag">TensorFlow</span>
-        <span class="skill-tag">MLOps</span>
-        <span class="skill-tag">NLP</span>
-        <span class="skill-tag">ASR</span>
-        <span class="skill-tag">Neural Networks</span>
-        <span class="skill-tag">Responsible AI</span>
+    <div class="fi">
+      <div class="sg-title">AI &amp; Machine Learning</div>
+      <div class="skill-wrap">
+        <span class="skill-pill">Large Language Models</span><span class="skill-pill">GenAI</span>
+        <span class="skill-pill">RAG Systems</span><span class="skill-pill">LLM Fine-tuning</span>
+        <span class="skill-pill">Agentic AI</span><span class="skill-pill">LangGraph</span>
+        <span class="skill-pill">Transformers</span><span class="skill-pill">PyTorch</span>
+        <span class="skill-pill">TensorFlow</span><span class="skill-pill">MLOps</span>
+        <span class="skill-pill">NLP</span><span class="skill-pill">ASR</span>
+        <span class="skill-pill">Responsible AI</span>
       </div>
     </div>
-    <div class="skill-group fade-in" style="animation-delay:0.08s">
-      <div class="skill-group-title">Cloud &amp; Engineering</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">Azure ML</span>
-        <span class="skill-tag">Azure Databricks</span>
-        <span class="skill-tag">Azure DevOps</span>
-        <span class="skill-tag">OpenAI API</span>
-        <span class="skill-tag">NVIDIA NeMo</span>
-        <span class="skill-tag">Microservices</span>
-        <span class="skill-tag">Vector Databases</span>
+    <div class="fi" style="transition-delay:.1s">
+      <div class="sg-title">Cloud &amp; Engineering</div>
+      <div class="skill-wrap">
+        <span class="skill-pill">Python</span><span class="skill-pill">Azure ML</span>
+        <span class="skill-pill">Azure Databricks</span><span class="skill-pill">Azure DevOps</span>
+        <span class="skill-pill">OpenAI API</span><span class="skill-pill">NVIDIA NeMo</span>
+        <span class="skill-pill">Microservices</span><span class="skill-pill">Vector Databases</span>
       </div>
     </div>
-    <div class="skill-group fade-in" style="animation-delay:0.12s">
-      <div class="skill-group-title">Data Science &amp; Analytics</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Classification</span>
-        <span class="skill-tag">Regression</span>
-        <span class="skill-tag">Optimization</span>
-        <span class="skill-tag">Forecasting</span>
-        <span class="skill-tag">Price Optimization</span>
-        <span class="skill-tag">NPS Analytics</span>
-        <span class="skill-tag">Power BI</span>
-        <span class="skill-tag">Dash</span>
+    <div class="fi" style="transition-delay:.15s">
+      <div class="sg-title">Data Science &amp; Analytics</div>
+      <div class="skill-wrap">
+        <span class="skill-pill">Classification</span><span class="skill-pill">Regression</span>
+        <span class="skill-pill">Optimization</span><span class="skill-pill">Forecasting</span>
+        <span class="skill-pill">Price Optimization</span><span class="skill-pill">NPS Analytics</span>
+        <span class="skill-pill">Power BI</span><span class="skill-pill">Dash</span>
       </div>
     </div>
-    <div class="skill-group fade-in" style="animation-delay:0.16s">
-      <div class="skill-group-title">Leadership &amp; Strategy</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Team Leadership</span>
-        <span class="skill-tag">Innovation Center</span>
-        <span class="skill-tag">Strategic AI</span>
-        <span class="skill-tag">Mentorship</span>
-        <span class="skill-tag">Client Relations</span>
-        <span class="skill-tag">Entrepreneurship</span>
+    <div class="fi" style="transition-delay:.2s">
+      <div class="sg-title">Leadership &amp; Strategy</div>
+      <div class="skill-wrap">
+        <span class="skill-pill">Team Leadership</span><span class="skill-pill">Innovation Center</span>
+        <span class="skill-pill">Strategic AI</span><span class="skill-pill">Mentorship</span>
+        <span class="skill-pill">Client Relations</span><span class="skill-pill">Entrepreneurship</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<hr class="section-div" />
 
 <!-- PATENTS -->
 <section id="patents">
-  <div class="section-label fade-in"><span>04 // Research &amp; Innovation</span></div>
-  <h2 class="section-title fade-in">Patents &amp; <em>Inventions</em></h2>
-
-  <div class="patent-stats fade-in">
-    <div class="pstat"><span class="pstat-num">12</span><span class="pstat-label">US Patents Filed</span></div>
-    <div class="pstat-divider"></div>
-    <div class="pstat"><span class="pstat-num">3</span><span class="pstat-label">Focus Areas</span></div>
-    <div class="pstat-divider"></div>
-    <div class="pstat"><span class="pstat-num">UHG</span><span class="pstat-label">Senior Inventor</span></div>
-    <div class="pstat-divider"></div>
-    <div class="pstat"><span class="pstat-num">2022–25</span><span class="pstat-label">Filing Period</span></div>
+  <div class="sec-header fi">
+    <div class="sec-kicker">Research &amp; Innovation</div>
+    <h2 class="sec-title">Patents &amp; <em>Inventions</em></h2>
   </div>
-
-  <div class="patent-categories fade-in">
-    <div class="pcat pcat-rag"><span>⚡</span> Efficient LLMs &amp; RAG</div>
-    <div class="pcat pcat-genai"><span>🧠</span> Generative AI</div>
-    <div class="pcat pcat-fair"><span>⚖</span> Responsible AI</div>
+  <div class="patent-bar fi">
+    <div class="pb-item"><span class="pb-num">12</span><span class="pb-label">US Patents Filed</span></div>
+    <div class="pb-item"><span class="pb-num">3</span><span class="pb-label">Focus Areas</span></div>
+    <div class="pb-item"><span class="pb-num">UHG</span><span class="pb-label">Senior Inventor</span></div>
+    <div class="pb-item"><span class="pb-num">2022–25</span><span class="pb-label">Filing Period</span></div>
   </div>
-
+  <div class="patent-cats fi">
+    <div class="pcat pcat-a">⚡ Efficient LLMs &amp; RAG</div>
+    <div class="pcat pcat-b">🧠 Generative AI</div>
+    <div class="pcat pcat-c">⚖ Responsible AI</div>
+  </div>
   <div class="patents-grid">
-    <div class="patent-card patent-featured fade-in">
-      <div class="patent-badge">Featured</div>
-      <div class="patent-number">US PATENT APPLICATION · 2025</div>
-      <div class="patent-title">Self-Improving RAG System with Re-ranking Feedbacks</div>
-      <p class="patent-desc">Enhancing RAG systems by incorporating re-ranker output as iterative feedback to progressively refine document representations — eliminating computational overhead of re-ranking at inference time without sacrificing retrieval quality.</p>
-      <div class="patent-tags"><span class="ptag">RAG</span><span class="ptag">Re-ranking</span><span class="ptag">Efficient LLMs</span></div>
+
+    <!-- From resume – featured -->
+    <div class="p-card featured fi">
+      <div class="p-badge">Featured</div>
+      <div class="p-num">US Patent Application · 2025</div>
+      <div class="p-title">Self-Improving RAG System with Re-ranking Feedbacks</div>
+      <p class="p-desc">Enhances RAG systems by incorporating re-ranker output as iterative feedback to progressively refine document representations — eliminating re-ranking overhead at inference time without sacrificing retrieval quality.</p>
+      <div class="p-tags"><span class="ptag">RAG</span><span class="ptag">Re-ranking</span><span class="ptag">Efficient LLMs</span></div>
     </div>
 
-    <div class="patent-card patent-featured fade-in" style="animation-delay:0.08s">
-      <div class="patent-badge">Featured</div>
-      <div class="patent-number">US PATENT APPLICATION · 2024</div>
-      <div class="patent-title">Grounded Language Generation via Importance-Adjusted BLEU</div>
-      <p class="patent-desc">Importance-adjusted BLEU score metric — computed via quantile-ranked weighting — to evaluate factual grounding of LLM outputs. The LLM iteratively refines responses to maximize this score, promoting contextually grounded generation.</p>
-      <div class="patent-tags"><span class="ptag">LLM Evaluation</span><span class="ptag">Factual Grounding</span><span class="ptag">GenAI</span></div>
+    <div class="p-card featured fi" style="transition-delay:.08s">
+      <div class="p-badge">Featured</div>
+      <div class="p-num">US Patent Application · 2024</div>
+      <div class="p-title">Grounded Language Generation via Importance-Adjusted BLEU</div>
+      <p class="p-desc">Introduces an importance-adjusted BLEU metric via quantile-ranked weighting to evaluate factual grounding of LLM outputs — the LLM iteratively refines its responses to maximize this score for more accurate generation.</p>
+      <div class="p-tags"><span class="ptag">LLM Eval</span><span class="ptag">Factual Grounding</span><span class="ptag">GenAI</span></div>
     </div>
 
-    <div class="patent-card fade-in" style="animation-delay:0.12s">
-      <div class="patent-number">US PATENT · 2024</div>
-      <div class="patent-title">UnBAI — ML Fairness Framework for Enterprise AI</div>
-      <p class="patent-desc">Comprehensive ML fairness framework ensuring ethical AI practices through standardized fairness evaluation across all UHG AI systems — a foundational pillar of Responsible AI governance at enterprise scale.</p>
-      <div class="patent-tags"><span class="ptag">Responsible AI</span><span class="ptag">Fairness</span><span class="ptag">MLOps</span></div>
+    <!-- From Google Patents screenshot -->
+    <div class="p-card fi" style="transition-delay:.12s">
+      <div class="p-num">EP4383152A1 &amp; EP4383153A1 · Published 2024-06-12</div>
+      <div class="p-title">Machine Learning Evaluation for Detecting Feature Bias</div>
+      <p class="p-desc">An evaluation framework using new data structures to comprehensively detect feature bias in machine learning models — enabling robust and auditable bias assessment at enterprise scale.</p>
+      <div class="p-tags"><span class="ptag">Responsible AI</span><span class="ptag">Bias Detection</span><span class="ptag">ML Evaluation</span></div>
     </div>
 
-    <div class="patent-card fade-in" style="animation-delay:0.16s">
-      <div class="patent-number">US PATENT · 2023</div>
-      <div class="patent-title">Autonomous CQL Code Generation Agent</div>
-      <p class="patent-desc">Autonomous coding agent using ReAct framework and LangGraph for workflow orchestration — enabling real-time integration with clinical knowledge repositories and intelligent CQL code generation to accelerate clinical quality development.</p>
-      <div class="patent-tags"><span class="ptag">Agentic AI</span><span class="ptag">LangGraph</span><span class="ptag">Clinical AI</span></div>
+    <div class="p-card fi" style="transition-delay:.16s">
+      <div class="p-num">US20250156750A1 · Published 2025-05-15</div>
+      <div class="p-title">Reinforcement Learning for ML Models Using Dynamic Confidence Thresholds</div>
+      <p class="p-desc">Provides reinforcement learning for machine learning models by generating augmented training datasets using dynamic confidence thresholds — improving model accuracy and robustness on underrepresented data.</p>
+      <div class="p-tags"><span class="ptag">Reinforcement Learning</span><span class="ptag">ML Training</span><span class="ptag">Confidence Thresholds</span></div>
     </div>
 
-    <div class="patent-card fade-in" style="animation-delay:0.20s">
-      <div class="patent-number">US PATENT · 2023</div>
-      <div class="patent-title">Scalable RAG-Based Wellness Q&amp;A System (EAP)</div>
-      <p class="patent-desc">Scalable RAG chatbot for mental and emotional wellness serving 10,000+ active members — providing a safe space to talk, tools to promote well-being, and 24/7 support availability under an Employee Assistance Program.</p>
-      <div class="patent-tags"><span class="ptag">RAG</span><span class="ptag">Healthcare AI</span><span class="ptag">Conversational AI</span></div>
+    <div class="p-card fi" style="transition-delay:.20s">
+      <div class="p-num">US20250077957A1 · Published 2025-03-06</div>
+      <div class="p-title">Quality Assurance for ML Using Distribution Patterns in Training Data</div>
+      <p class="p-desc">Provides quality assurance for machine learning by generating augmented training datasets using distribution patterns — ensuring training data integrity and improving downstream model performance.</p>
+      <div class="p-tags"><span class="ptag">MLOps</span><span class="ptag">Data Quality</span><span class="ptag">Training Data</span></div>
     </div>
 
-    <div class="patent-card fade-in" style="animation-delay:0.24s">
-      <div class="patent-number">US PATENT · 2023</div>
-      <div class="patent-title">ServiceNow Ticket Deduplication via RAG</div>
-      <p class="patent-desc">Organisation-wide intelligent ticket deduplication leveraging RAG to identify duplicate service tickets — delivering operational efficiency improvements projected to generate $1M in annual cost savings.</p>
-      <div class="patent-tags"><span class="ptag">RAG</span><span class="ptag">NLP</span><span class="ptag">IT Operations</span></div>
+    <div class="p-card fi" style="transition-delay:.24s">
+      <div class="p-num">US20250378368A1 · Published 2025-12-11</div>
+      <div class="p-title">Systems and Methods for Generating Improved Training Data for Machine Learning</div>
+      <p class="p-desc">Discloses methods for generating improved ML training data by detecting input outlier scores and augmenting datasets from multiple data sources — addressing data scarcity and label imbalance challenges.</p>
+      <div class="p-tags"><span class="ptag">Training Data</span><span class="ptag">Outlier Detection</span><span class="ptag">ML</span></div>
     </div>
 
-    <div class="patent-card fade-in" style="animation-delay:0.28s">
-      <div class="patent-number">US PATENT · 2022</div>
-      <div class="patent-title">ASR NLP Pipeline for In-Home Assessment Automation</div>
-      <p class="patent-desc">ASR NLP pipelines fine-tuned using NVIDIA NeMo models — processing 500,000+ clinical calls per month, driving scheduling rate improvements and $40M in annual savings for in-home assessment business.</p>
-      <div class="patent-tags"><span class="ptag">ASR</span><span class="ptag">NLP</span><span class="ptag">NVIDIA NeMo</span></div>
-    </div>
-
-    <div class="patent-card fade-in" style="animation-delay:0.32s">
-      <div class="patent-number">US PATENT · 2022</div>
-      <div class="patent-title">Multi-Agent GenAI Root Cause Analysis System</div>
-      <p class="patent-desc">Microservices-based multi-agent RCA architecture powered by GenAI — analyzing observability data, historical incidents, knowledge bases and product documentation to identify root causes of production incidents in real time.</p>
-      <div class="patent-tags"><span class="ptag">Agentic AI</span><span class="ptag">GenAI</span><span class="ptag">Healthcare Ops</span></div>
-    </div>
-
-    <div class="patent-card patent-more fade-in" style="animation-delay:0.36s;grid-column:1/-1;">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-        <div>
-          <div class="patent-number">US PATENT PORTFOLIO · 4 ADDITIONAL PATENTS</div>
-          <div class="patent-title" style="font-size:1.1rem;margin-bottom:8px;">Responsible AI, Efficient LLM &amp; GenAI Areas</div>
-          <p class="patent-desc" style="max-width:640px;">Additional patents cover innovations across Responsible AI governance, LLM efficiency optimizations, fairness metrics, and applied GenAI in healthcare — all filed under United Health Group as Senior Inventor.</p>
-        </div>
-        <div style="text-align:center;flex-shrink:0;">
-          <div style="font-family:'Syne',sans-serif;font-size:3.5rem;font-weight:800;color:var(--cyan);text-shadow:0 0 24px var(--cyan-glow);line-height:1;">12</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:0.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;">Total US Patents</div>
-        </div>
+    <div class="p-card p-card-wide fi" style="transition-delay:.32s">
+      <div>
+        <div class="p-num" style="color:rgba(255,255,255,0.4)">US20250342362A1 · Published 2025-11-06 · Plus 6 additional patents</div>
+        <div class="p-title" style="color:#fff;font-size:1.15rem">Reinforcement Learning-Based Systems for Message Generation &amp; More</div>
+        <p class="p-desc" style="color:rgba(255,255,255,0.55);max-width:560px">A reinforcement learning model generates target messages satisfying a user's response level. Portfolio also includes patents in Agentic AI (CQL codegen, Multi-Agent RCA), healthcare NLP (ASR pipelines, EAP chatbot), and IT operations (ticket deduplication).</p>
       </div>
+      <div class="p-wide-count">12<span>Total US Patents</span></div>
     </div>
+
   </div>
 </section>
 
-<div class="divider"></div>
+<hr class="section-div" />
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label fade-in"><span>05 // Get In Touch</span></div>
-  <h2 class="section-title fade-in">Let's <em>Connect</em></h2>
-  <div class="contact-grid">
-    <div class="fade-in">
-      <a href="mailto:sudhanshu.sharma1985@gmail.com" class="contact-link">
-        <div class="contact-icon">✉</div>
-        <div><div class="contact-link-label">sudhanshu.sharma1985@gmail.com</div><div class="contact-link-sub">// email</div></div>
+  <div class="sec-header fi">
+    <div class="sec-kicker">Get In Touch</div>
+    <h2 class="sec-title">Let's <em>Connect</em></h2>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-links fi">
+      <a href="/cdn-cgi/l/email-protection#433036272b222d302b366d302b22312e22727a7b7603242e222a2f6d202c2e" class="c-link">
+        <div class="c-icon">✉</div>
+        <div><div class="c-label"><span class="__cf_email__" data-cfemail="84f7f1e0ece5eaf7ecf1aaf7ece5f6e9e5b5bdbcb1c4e3e9e5ede8aae7ebe9">[email&#160;protected]</span></div><div class="c-sub">Email</div></div>
       </a>
-      <a href="https://www.linkedin.com/in/sudhanshu-sharma-4a54291a0/" target="_blank" class="contact-link">
-        <div class="contact-icon">in</div>
-        <div><div class="contact-link-label">linkedin.com/in/sudhanshu-sharma</div><div class="contact-link-sub">// linkedin</div></div>
+      <a href="https://www.linkedin.com/in/sudhanshu-sharma-4a54291a0/" target="_blank" class="c-link">
+        <div class="c-icon">in</div>
+        <div><div class="c-label">linkedin.com/in/sudhanshu-sharma</div><div class="c-sub">LinkedIn</div></div>
       </a>
-      <a href="https://medium.com/@Sudh" target="_blank" class="contact-link">
-        <div class="contact-icon">M</div>
-        <div><div class="contact-link-label">medium.com/@Sudh</div><div class="contact-link-sub">// articles &amp; writing</div></div>
+      <a href="https://medium.com/@Sudh" target="_blank" class="c-link">
+        <div class="c-icon" style="font-family:'Fraunces',serif">M</div>
+        <div><div class="c-label">medium.com/@Sudh</div><div class="c-sub">Medium — Articles &amp; Writing</div></div>
       </a>
-      <a href="tel:+919620693131" class="contact-link">
-        <div class="contact-icon">☎</div>
-        <div><div class="contact-link-label">+91 96206 93131</div><div class="contact-link-sub">// phone</div></div>
+      <a href="tel:+919620693131" class="c-link">
+        <div class="c-icon">☎</div>
+        <div><div class="c-label">+91 96206 93131</div><div class="c-sub">Phone</div></div>
       </a>
     </div>
-    <div class="fade-in" style="animation-delay:0.1s;padding:8px 0;">
-      <p class="contact-tagline">Open to <em>AI leadership</em> roles, strategic collaborations &amp; speaking.</p>
-      <p class="contact-body">Whether you're building your next GenAI product, exploring Responsible AI frameworks, or want a perspective from someone who has shipped AI at scale in healthcare — feel free to reach out.</p>
+    <div class="contact-right fi" style="transition-delay:.1s">
+      <p class="contact-headline">Open to <em>AI leadership</em>, strategic collaborations &amp; speaking opportunities.</p>
+      <p class="contact-note">Whether you're building your next GenAI product, exploring Responsible AI at scale, or seeking an experienced AI leader's perspective — I'd be glad to connect.</p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
-    <div class="footer-logo-dot"></div>
-    SUDHANSHU SHARMA
-  </div>
-  <p>© 2026 · PRINCIPAL DATA SCIENTIST · UNITED HEALTH GROUP (OPTUM)</p>
+  <div class="foot-brand">Sudhanshu Sharma<span> · Principal Data Scientist</span></div>
+  <p>© 2026 · United Health Group (Optum)</p>
 </footer>
 
-<!-- CHAT FAB -->
-<button class="chat-fab" onclick="toggleChat()" id="chat-fab-btn" title="Chat with Siddhi">🤖</button>
-
-<!-- CHAT PANEL -->
+<!-- CHATBOT -->
+<button class="fab" onclick="toggleChat()" id="fab-btn">🤖</button>
 <div class="chat-panel" id="chat-panel">
-  <div class="chat-header">
-    <div class="chat-avatar">🤖</div>
+  <div class="chat-head">
+    <div class="chat-av">🤖</div>
     <div>
-      <div class="chat-header-name">Siddhi — AI Assistant</div>
-      <div class="chat-header-sub"><span class="chat-status-dot"></span>Ask about Sudhanshu</div>
+      <div class="chat-head-name">Siddhi — AI Assistant</div>
+      <div class="chat-head-sub"><span class="online-dot"></span>Ask me about Sudhanshu</div>
     </div>
-    <button class="chat-close" onclick="toggleChat()">✕</button>
+    <button class="chat-x" onclick="toggleChat()">✕</button>
   </div>
-  <div class="chat-messages" id="chat-messages">
-    <div class="msg msg-bot">👋 Hi! I'm <strong>Siddhi</strong>, Sudhanshu's AI assistant. Ask me anything about his experience, patents, projects or skills!</div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="msg msg-bot">👋 Hi! I'm <strong>Siddhi</strong>, Sudhanshu's AI assistant. Ask me anything about his experience, patents, or skills!</div>
   </div>
-  <div class="chat-input-area">
-    <textarea class="chat-input" id="chat-input" placeholder="Ask something..." rows="1" onkeydown="handleKey(event)"></textarea>
-    <button class="chat-send" onclick="sendMessage()">→</button>
+  <div class="chat-foot">
+    <textarea class="chat-in" id="chat-in" placeholder="Ask about Sudhanshu's work..." rows="1" onkeydown="handleKey(event)"></textarea>
+    <button class="chat-send" onclick="sendMsg()">➤</button>
   </div>
-  <div class="chat-branding">POWERED BY CLAUDE AI</div>
+  <div class="chat-brand">Powered by Claude AI</div>
 </div>
 
-<script>
-// Scroll animations
-const observer = new IntersectionObserver(
-  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }),
-  {threshold:0.08, rootMargin:'0px 0px -40px 0px'}
-);
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const io = new IntersectionObserver(
+    es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fi').forEach(el => io.observe(el));
 
-// Chat
-let chatOpen = false;
-function toggleChat(){
-  chatOpen = !chatOpen;
-  document.getElementById('chat-panel').classList.toggle('open', chatOpen);
-  document.getElementById('chat-fab-btn').textContent = chatOpen ? '✕' : '🤖';
-}
-function handleKey(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();} }
-
-async function sendMessage(){
-  const input = document.getElementById('chat-input');
-  const text = input.value.trim();
-  if(!text) return;
-  input.value='';input.style.height='auto';
-  addMessage(text,'user');
-  const typing = addTyping();
-
-  const ctx = `You are Siddhi, an AI assistant for Sudhanshu Sharma's portfolio website. Be helpful, friendly and concise (2-4 sentences). Only answer about Sudhanshu's professional profile.
-
-NAME: Sudhanshu Sharma
-CURRENT: Principal Data Scientist, United Health Group (Optum), Jan 2022 – Present
-EXPERIENCE: 16+ years across Healthcare, Retail, Banking
-PATENTS: 12 US patents — Responsible AI, GenAI, Efficient LLMs. Established UHG Innovation Center.
-
-KEY PROJECTS AT UHG:
-- Autonomous CQL coding agent (ReAct + LangGraph)
-- RAG wellness chatbot serving 10,000+ EAP members
-- ServiceNow ticket deduplication RAG system saving $1M/year
-- ASR NLP pipelines (NVIDIA NeMo) 500K calls/month, $40M annual savings
-- UnBAI ML Fairness Framework for ethical AI at enterprise scale
-
-PAST ROLES:
-- Associate Principal Data Scientist, Accenture (Dec 2017–Dec 2021): Led 6-person DS team, ML Price Optimization driving ~$50M profitability
-- Co-Founder, Tandurust Healthy Food (Oct 2014–Jun 2016): Angel-funded FoodTech startup, Bangalore
-- Analytics Lead, Mphasis (Jul 2016–Dec 2017): $1.2BN sales forecasting, NPS predictor, TSP app
-- Senior Analyst, Mphasis (Aug 2011–Sep 2014): SPIN sales forecasting $1BN, Power BI dashboards
-- Business Analyst, CSC (Jun 2007–Jun 2009)
-
-EDUCATION: MBA Marketing — IMT Ghaziabad (2011); B.Tech CS — Jamia Millia Islamia (2007)
-SKILLS: Python, Azure ML, Databricks, LLMs, GenAI, RAG, LangGraph, PyTorch, TensorFlow, Transformers, NLP, ASR, MLOps, OpenAI, NVIDIA NeMo, Vector DBs
-CONTACT: sudhanshu.sharma1985@gmail.com | medium.com/@Sudh`;
-
-  try{
-    const res = await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:1000,
-        system:ctx,
-        messages:[{role:'user',content:text}]
-      })
-    });
-    const data = await res.json();
-    const reply = data.content?.[0]?.text || "I'm having trouble connecting right now. Please try again!";
-    typing.remove();
-    addMessage(reply,'bot');
-  }catch(e){
-    typing.remove();
-    addMessage("Connectivity issue. Please reach out directly at sudhanshu.sharma1985@gmail.com!",'bot');
+  // Chat
+  let open = false;
+  function toggleChat(){
+    open = !open;
+    document.getElementById('chat-panel').classList.toggle('open', open);
+    document.getElementById('fab-btn').textContent = open ? '✕' : '🤖';
   }
-}
+  function handleKey(e){ if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} }
 
-function addMessage(text,role){
-  const msgs = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className=`msg msg-${role}`;
-  div.innerHTML = text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
-  msgs.appendChild(div);
-  msgs.scrollTop=msgs.scrollHeight;
-  return div;
-}
-function addTyping(){
-  const msgs = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className='msg-typing';
-  div.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-  msgs.appendChild(div);
-  msgs.scrollTop=msgs.scrollHeight;
-  return div;
-}
-document.getElementById('chat-input').addEventListener('input',function(){
-  this.style.height='auto';
-  this.style.height=Math.min(this.scrollHeight,80)+'px';
-});
-</script>
-</body>
-</html>
+  async function sendMsg(){
+    const inp = document.getElementById('chat-in');
+    const txt = inp.value.trim(); if(!txt) return;
+    inp.value=''; inp.style.height='auto';
+    addMsg(txt,'user'); const t = addTyping();
+    const sys = `You are Siddhi, an AI assistant for Sudhanshu Sharma's portfolio. Be helpful and concise.
+
+PROFILE: Principal Data Scientist at UHG/Optum (Jan 2022–present), 16+ years experience, 12 US patents (Responsible AI, GenAI, Efficient LLMs).
+KEY PROJECTS: Autonomous CQL agent (ReAct+LangGraph), RAG wellness chatbot (10K+ EAP members), ServiceNow deduplication ($1M savings), ASR pipelines 500K calls/month ($40M savings), UnBAI fairness framework.
+PAST: Associate Principal Data Scientist Accenture 2017-2021 ($50M impact), Co-Founder Tandurust FoodTech, Analytics Lead & Senior Analyst at Mphasis.
+EDUCATION: MBA Marketing IMT Ghaziabad (2011), B.Tech CS Jamia Millia Islamia (2007).
+CONTACT: sudhanshu.sharma1985@gmail.com | LinkedIn: sudhanshu-sharma-4a54291a0.
+Answer in 2-4 sentences. Only discuss Sudhanshu's professional profile.`;
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:txt}]})
+      });
+      const d = await r.json(); t.remove();
+      addMsg(d.content?.[0]?.text||'Connection issue, please try again.','bot');
+    } catch { t.remove(); addMsg('Please reach out at sudhanshu.sharma1985@gmail.com!','bot'); }
+  }
+  function addMsg(txt,role){
+    const el=document.getElementById('chat-msgs');
+    const d=document.createElement('div'); d.className=`msg msg-${role}`;
+    d.innerHTML=txt.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+    el.appendChild(d); el.scrollTop=el.scrollHeight; return d;
+  }
+  function addTyping(){
+    const el=document.getElementById('chat-msgs');
+    const d=document.createElement('div'); d.className='typing';
+    d.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></
