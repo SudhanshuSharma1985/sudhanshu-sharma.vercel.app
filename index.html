@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sudhanshu Sharma — Principal Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #faf8f4;
+    --white: #ffffff;
+    --navy: #0f1c2e;
+    --slate: #2d3f55;
+    --mid: #5a6e84;
+    --light: #9aafc4;
+    --gold: #c8963e;
+    --gold-light: #e8b860;
+    --border: #e2ddd5;
+    --border-soft: #ede9e2;
+    --tag-bg: #f0ece5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    overflow-x: hidden;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,244,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--navy); text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--mid);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ---- HERO ---- */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 48px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .hero-left { position: relative; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 40px; padding: 6px 16px;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .hero-tag::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.05;
+    color: var(--navy); margin-bottom: 8px;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-subtitle {
+    font-size: 1rem; font-weight: 400; color: var(--mid);
+    margin-bottom: 32px; line-height: 1.6;
+  }
+  .hero-desc {
+    font-size: 0.95rem; color: var(--slate); line-height: 1.75;
+    max-width: 520px; margin-bottom: 48px;
+  }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--navy); color: var(--white);
+    padding: 14px 32px; border-radius: 4px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid var(--navy); color: var(--navy);
+    padding: 13px 32px; border-radius: 4px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-right {
+    display: flex; flex-direction: column; gap: 20px;
+    padding-left: 48px;
+    border-left: 1px solid var(--border-soft);
+  }
+  .stat-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 24px 28px;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(15,28,46,0.08); }
+  .stat-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%; background: var(--gold);
+  }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 600; color: var(--navy);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--mid); margin-top: 4px; font-weight: 400; }
+
+  /* ---- SECTIONS ---- */
+  section {
+    padding: 100px 48px;
+    max-width: 1280px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300; color: var(--navy);
+    margin-bottom: 56px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    height: 1px; background: var(--border-soft);
+    max-width: 1280px; margin: 0 auto;
+  }
+
+  /* ---- EXPERIENCE ---- */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid; grid-template-columns: 220px 1fr;
+    gap: 0; border-top: 1px solid var(--border-soft);
+    padding: 40px 0;
+    position: relative;
+  }
+  .timeline-item:last-child { border-bottom: 1px solid var(--border-soft); }
+  .timeline-meta { padding-right: 40px; }
+  .timeline-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--gold);
+    letter-spacing: 0.05em; margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .timeline-company {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--light); margin-bottom: 4px;
+  }
+  .timeline-location {
+    font-size: 0.72rem; color: var(--light); font-weight: 300;
+  }
+  .timeline-content { padding-left: 40px; border-left: 1px solid var(--border-soft); }
+  .timeline-role {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 16px; line-height: 1.2;
+  }
+  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .timeline-bullets li {
+    font-size: 0.875rem; color: var(--slate); line-height: 1.65;
+    padding-left: 16px; position: relative;
+  }
+  .timeline-bullets li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold); font-size: 0.7rem; top: 3px;
+  }
+  .impact-tag {
+    display: inline-block;
+    background: rgba(200,150,62,0.1); color: var(--gold);
+    border: 1px solid rgba(200,150,62,0.25);
+    border-radius: 3px; padding: 2px 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; font-weight: 500;
+    margin-left: 6px; vertical-align: middle;
+  }
+
+  /* ---- SKILLS ---- */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .skill-group-title {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--mid);
+    margin-bottom: 20px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 4px; padding: 7px 14px;
+    font-size: 0.78rem; color: var(--slate); font-weight: 400;
+    transition: all 0.2s; cursor: default;
+  }
+  .skill-tag:hover {
+    border-color: var(--gold); color: var(--gold);
+    background: rgba(200,150,62,0.04);
+  }
+
+  /* ---- PATENTS ---- */
+  .patents-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .patent-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 28px; position: relative;
+    overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .patent-card:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(15,28,46,0.08); }
+  .patent-card::after {
+    content: ''; position: absolute;
+    bottom: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at bottom right, rgba(200,150,62,0.08) 0%, transparent 70%);
+  }
+  .patent-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--gold);
+    letter-spacing: 0.1em; margin-bottom: 10px; font-weight: 500;
+  }
+  .patent-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .patent-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.65; }
+
+  /* ---- PATENT STATS BAR ---- */
+  .patent-stats {
+    display: flex; align-items: center; gap: 0;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0; margin-bottom: 36px;
+    overflow: hidden;
+  }
+  .pstat {
+    flex: 1; text-align: center; padding: 20px 16px;
+  }
+  .pstat-divider {
+    width: 1px; height: 48px; background: var(--border-soft); flex-shrink: 0;
+  }
+  .pstat-num {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600; color: var(--navy); line-height: 1;
+  }
+  .pstat-label {
+    display: block; font-size: 0.68rem; color: var(--mid);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px;
+  }
+
+  /* ---- PATENT CATEGORIES ---- */
+  .patent-categories {
+    display: flex; gap: 12px; margin-bottom: 36px; flex-wrap: wrap;
+  }
+  .pcat {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 18px; border-radius: 40px;
+    font-size: 0.78rem; font-weight: 500;
+    border: 1px solid var(--border);
+  }
+  .pcat-rag { background: rgba(200,150,62,0.07); border-color: rgba(200,150,62,0.3); color: var(--gold); }
+  .pcat-genai { background: rgba(15,28,46,0.05); border-color: rgba(15,28,46,0.15); color: var(--slate); }
+  .pcat-fair { background: rgba(90,110,132,0.07); border-color: rgba(90,110,132,0.2); color: var(--mid); }
+  .pcat-icon { font-size: 0.9rem; }
+
+  .patent-featured {
+    border-color: rgba(200,150,62,0.3) !important;
+    background: linear-gradient(135deg, #fffdf9 0%, #fff8ed 100%) !important;
+  }
+  .patent-badge {
+    display: inline-block;
+    background: var(--gold); color: var(--white);
+    font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 3px 10px;
+    border-radius: 40px; margin-bottom: 10px;
+  }
+  .patent-more {
+    background: var(--navy) !important;
+    border-color: var(--navy) !important;
+  }
+  .patent-more .patent-number { color: var(--gold) !important; }
+  .patent-more .patent-title { color: var(--white) !important; }
+  .patent-more .patent-desc { color: rgba(255,255,255,0.6) !important; }
+  .patent-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .ptag {
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-radius: 3px; padding: 3px 9px;
+    font-size: 0.68rem; color: var(--mid); font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .patent-featured .ptag {
+    background: rgba(200,150,62,0.1); border-color: rgba(200,150,62,0.25); color: var(--gold);
+  }
+
+
+
+  /* ---- EDUCATION ---- */
+  .education-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .edu-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 32px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .edu-card:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(15,28,46,0.07); }
+  .edu-degree {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--navy);
+    margin-bottom: 6px; line-height: 1.25;
+  }
+  .edu-school { font-size: 0.85rem; color: var(--slate); margin-bottom: 4px; }
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; color: var(--gold); font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---- CONTACT ---- */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 20px; }
+  .contact-link {
+    display: flex; align-items: center; gap: 16px;
+    text-decoration: none; padding: 16px 0;
+    border-bottom: 1px solid var(--border-soft);
+    transition: all 0.2s;
+  }
+  .contact-link:hover { padding-left: 8px; }
+  .contact-link:hover .contact-link-label { color: var(--gold); }
+  .contact-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; flex-shrink: 0;
+  }
+  .contact-link-label { font-size: 0.9rem; color: var(--slate); font-weight: 400; transition: color 0.2s; }
+  .contact-link-sub { font-size: 0.72rem; color: var(--light); margin-top: 1px; }
+
+  /* ---- CHATBOT ---- */
+  .chat-fab {
+    position: fixed; bottom: 32px; right: 32px;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: var(--navy); color: var(--white);
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; z-index: 200;
+    box-shadow: 0 8px 32px rgba(15,28,46,0.25);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .chat-fab:hover { background: var(--gold); transform: scale(1.06); }
+
+  .chat-panel {
+    position: fixed; bottom: 104px; right: 32px;
+    width: 380px; max-height: 560px;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 24px 80px rgba(15,28,46,0.18);
+    display: flex; flex-direction: column;
+    z-index: 200;
+    transform: scale(0.9) translateY(20px);
+    opacity: 0; pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .chat-panel.open {
+    transform: scale(1) translateY(0);
+    opacity: 1; pointer-events: all;
+  }
+  .chat-header {
+    padding: 18px 20px; border-bottom: 1px solid var(--border-soft);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .chat-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--navy); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .chat-status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #22c55e; display: inline-block; margin-right: 6px;
+    animation: pulse 2s infinite;
+  }
+  .chat-header-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+  .chat-header-sub { font-size: 0.72rem; color: var(--mid); }
+  .chat-close {
+    margin-left: auto; background: none; border: none;
+    cursor: pointer; color: var(--light); font-size: 1.1rem;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .chat-close:hover { background: var(--tag-bg); color: var(--navy); }
+
+  .chat-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px;
+    min-height: 0;
+  }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .msg {
+    max-width: 85%; padding: 10px 14px;
+    border-radius: 12px; font-size: 0.84rem; line-height: 1.5;
+  }
+  .msg-bot {
+    background: var(--cream); border: 1px solid var(--border-soft);
+    color: var(--slate); border-radius: 4px 12px 12px 12px;
+    align-self: flex-start;
+  }
+  .msg-user {
+    background: var(--navy); color: var(--white);
+    border-radius: 12px 4px 12px 12px;
+    align-self: flex-end;
+  }
+  .msg-typing {
+    display: flex; gap: 4px; align-items: center; padding: 14px;
+    background: var(--cream); border: 1px solid var(--border-soft);
+    border-radius: 4px 12px 12px 12px; align-self: flex-start;
+  }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--light); animation: bounce 1.2s infinite;
+  }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-6px); }
+  }
+
+  .chat-input-area {
+    padding: 12px 16px; border-top: 1px solid var(--border-soft);
+    display: flex; gap: 8px; align-items: flex-end;
+  }
+  .chat-input {
+    flex: 1; border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 14px; font-size: 0.84rem; font-family: 'DM Sans', sans-serif;
+    color: var(--navy); background: var(--cream); resize: none;
+    outline: none; transition: border-color 0.2s;
+    max-height: 80px; overflow-y: auto;
+  }
+  .chat-input:focus { border-color: var(--gold); }
+  .chat-send {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--navy); color: var(--white);
+    border: none; cursor: pointer; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; transition: background 0.2s;
+  }
+  .chat-send:hover { background: var(--gold); }
+  .chat-branding {
+    text-align: center; padding: 8px;
+    font-size: 0.65rem; color: var(--light);
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: var(--navy); color: var(--light);
+    padding: 36px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  footer .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--white); font-weight: 300;
+  }
+  footer .footer-logo span { color: var(--gold); }
+  footer p { font-size: 0.75rem; }
+
+  /* ---- FADE IN ---- */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 40px; }
+    .hero-right { padding-left: 0; border-left: none; border-top: 1px solid var(--border-soft); padding-top: 32px; }
+    section { padding: 64px 24px; }
+    .skills-grid, .patents-grid, .education-grid, .contact-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; }
+    .timeline-content { padding-left: 0; border-left: none; padding-top: 16px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px; }
+    .chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 88px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">SS<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#patents">Patents</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left fade-in">
+    <div class="hero-tag">Available for collaboration</div>
+    <h1>Sudhanshu<br /><em>Sharma</em></h1>
+    <p class="hero-subtitle">Principal Data Scientist &amp; AI Leader — United Health Group (Optum)</p>
+    <p class="hero-desc">
+      Accomplished AI leader with <strong>16 years</strong> of experience delivering transformative, enterprise-scale GenAI and NLP solutions across healthcare, retail, and banking. Proven track record of building high-performing teams, driving innovation, and generating measurable business impact through strategic AI initiatives.
+    </p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn-primary">Explore My Work</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right fade-in" style="animation-delay:0.15s">
+    <div class="stat-card">
+      <div class="stat-number">16+</div>
+      <div class="stat-label">Years of Industry Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">12</div>
+      <div class="stat-label">US Patents — Responsible AI, GenAI &amp; Efficient LLMs</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">$90M+</div>
+      <div class="stat-label">Quantifiable Business Impact Generated</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Industries Transformed — Healthcare, Retail &amp; Banking</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label fade-in">Work History</p>
+  <h2 class="section-title fade-in">Career <em>Journey</em></h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <div class="timeline-period">Jan 2022 — Present</div>
+        <div class="timeline-company">United Health Group</div>
+        <div class="timeline-location">Optum · India</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Principal Data Scientist</div>
+        <ul class="timeline-bullets">
+          <li>Built an autonomous coding agent using the ReAct framework to accelerate Clinical Quality Language (CQL) development — leveraging LangGraph for workflow orchestration and context-aware code generation.</li>
+          <li>Developed a scalable RAG-based mental &amp; emotional wellness Q&amp;A chatbot serving <span class="impact-tag">10,000+ members</span> under an Employee Assistance Program (EAP) with 24/7 support availability.</li>
+          <li>Developed an org-wide ServiceNow ticket deduplication solution using RAG architecture — delivering operational efficiency projected to generate <span class="impact-tag">$1M annual savings</span>.</li>
+          <li>Led development of ASR NLP pipelines, fine-tuning NVIDIA NeMo models to process <span class="impact-tag">500K+ calls/month</span> — resulting in increased scheduling rates and <span class="impact-tag">$40M annual savings</span>.</li>
+          <li>Invented ML fairness framework <strong>UnBAI</strong> — standardizing ethical AI evaluation across UHG. Senior inventor with <span class="impact-tag">12 US Patents</span> and established the UHG Innovation Center.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <div class="timeline-period">Dec 2017 — Dec 2021</div>
+        <div class="timeline-company">Accenture</div>
+        <div class="timeline-location">Data Science CoE · India</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Associate Principal Data Scientist</div>
+        <ul class="timeline-bullets">
+          <li>Led a team of 6 data scientists within the Data Science Center of Excellence, driving strategic client relationships and delivering high-impact analytical solutions.</li>
+          <li>Built an ML-based Price Optimization &amp; Simulation tool enabling product managers to analyze pricing impact — resulting in an approximately <span class="impact-tag">$50M quarterly profitability</span> improvement.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <div class="timeline-period">Jul 2016 — Dec 2017</div>
+        <div class="timeline-company">Mphasis</div>
+        <div class="timeline-location">Analytics Lead · India</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Analytics Lead</div>
+        <ul class="timeline-bullets">
+          <li>Performed text classification for purchase order categorization for a Malaysian oil &amp; gas company using NLP.</li>
+          <li>Built a Talent Success Profile (TSP) app using NLP — boosting skill interview selection from <span class="impact-tag">20% → 60%</span>.</li>
+          <li>Sales planning tool forecasting additional sales worth <span class="impact-tag">$1.2BN</span> across 11 markets for 22 Fuel &amp; Non-Fuel products.</li>
+          <li>Built an NPS Predictor app improving avg NPS score from <span class="impact-tag">5.2 → 7.4</span> for a South African retail company.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <div class="timeline-period">Oct 2014 — Jun 2016</div>
+        <div class="timeline-company">Tandurust</div>
+        <div class="timeline-location">Healthy Food · Bangalore</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Co-Founder</div>
+        <ul class="timeline-bullets">
+          <li>Co-founded <strong>Tandurust Healthy Food</strong> — an angel investor–funded FoodTech company delivering nutritionist-endorsed, calorie-counted meals to healthy eaters in Bangalore on a subscription basis.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <div class="timeline-period">Aug 2011 — Sep 2014</div>
+        <div class="timeline-company">Mphasis</div>
+        <div class="timeline-location">Senior Analyst · India</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Senior Analyst</div>
+        <ul class="timeline-bullets">
+          <li>Built SPIN (Sales Prediction &amp; Insights for New Deals) — forecasting sales worth <span class="impact-tag">$1BN</span> across major markets, improving accuracy from <span class="impact-tag">50% → 85%</span>.</li>
+          <li>Implemented complex financial dashboards in Power BI used by leadership for strategic reviews.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item fade-in">
+      <div class="timeline-meta">
+        <div class="timeline-period">Jun 2007 — Jun 2009</div>
+        <div class="timeline-company">CSC</div>
+        <div class="timeline-location">Business Analyst · India</div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-role">Business Analyst</div>
+        <ul class="timeline-bullets">
+          <li>Prepared requirement documents (BRD, FSD) for functional enhancements and features in planned product releases.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label fade-in">Technical Expertise</p>
+  <h2 class="section-title fade-in">Skills &amp; <em>Technologies</em></h2>
+  <div class="skills-grid">
+    <div class="fade-in">
+      <p class="skill-group-title">AI &amp; Machine Learning</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Large Language Models</span>
+        <span class="skill-tag">GenAI</span>
+        <span class="skill-tag">RAG Systems</span>
+        <span class="skill-tag">LLM Fine-tuning</span>
+        <span class="skill-tag">Agentic AI</span>
+        <span class="skill-tag">LangGraph</span>
+        <span class="skill-tag">Transformers</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">MLOps</span>
+        <span class="skill-tag">NLP</span>
+        <span class="skill-tag">ASR</span>
+        <span class="skill-tag">Neural Networks</span>
+        <span class="skill-tag">Responsible AI</span>
+      </div>
+    </div>
+    <div class="fade-in" style="animation-delay:0.1s">
+      <p class="skill-group-title">Cloud &amp; Engineering</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Azure ML</span>
+        <span class="skill-tag">Azure Databricks</span>
+        <span class="skill-tag">Azure DevOps</span>
+        <span class="skill-tag">OpenAI API</span>
+        <span class="skill-tag">NVIDIA NeMo</span>
+        <span class="skill-tag">Microservices</span>
+        <span class="skill-tag">Vector Databases</span>
+      </div>
+    </div>
+    <div class="fade-in" style="animation-delay:0.15s">
+      <p class="skill-group-title">Data Science &amp; Analytics</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Classification</span>
+        <span class="skill-tag">Regression</span>
+        <span class="skill-tag">Optimization</span>
+        <span class="skill-tag">Forecasting</span>
+        <span class="skill-tag">Price Optimization</span>
+        <span class="skill-tag">NPS Analytics</span>
+        <span class="skill-tag">Power BI</span>
+        <span class="skill-tag">Dash</span>
+      </div>
+    </div>
+    <div class="fade-in" style="animation-delay:0.2s">
+      <p class="skill-group-title">Leadership &amp; Strategy</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Team Leadership</span>
+        <span class="skill-tag">Innovation Center</span>
+        <span class="skill-tag">Strategic AI</span>
+        <span class="skill-tag">Mentorship</span>
+        <span class="skill-tag">Client Relations</span>
+        <span class="skill-tag">Entrepreneurship</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PATENTS -->
+<section id="patents">
+  <p class="section-label fade-in">Research &amp; Innovation</p>
+  <h2 class="section-title fade-in">Patents &amp; <em>Inventions</em></h2>
+
+  <!-- Patent stats bar -->
+  <div class="patent-stats fade-in">
+    <div class="pstat"><span class="pstat-num">12</span><span class="pstat-label">US Patents Filed</span></div>
+    <div class="pstat-divider"></div>
+    <div class="pstat"><span class="pstat-num">3</span><span class="pstat-label">Focus Areas</span></div>
+    <div class="pstat-divider"></div>
+    <div class="pstat"><span class="pstat-num">UHG</span><span class="pstat-label">Senior Inventor Recognition</span></div>
+    <div class="pstat-divider"></div>
+    <div class="pstat"><span class="pstat-num">2022–25</span><span class="pstat-label">Filing Period</span></div>
+  </div>
+
+  <!-- Patent category tabs -->
+  <div class="patent-categories fade-in">
+    <div class="pcat pcat-rag">
+      <div class="pcat-icon">⚡</div>
+      <div class="pcat-name">Efficient LLMs &amp; RAG</div>
+    </div>
+    <div class="pcat pcat-genai">
+      <div class="pcat-icon">🧠</div>
+      <div class="pcat-name">Generative AI</div>
+    </div>
+    <div class="pcat pcat-fair">
+      <div class="pcat-icon">⚖</div>
+      <div class="pcat-name">Responsible AI</div>
+    </div>
+  </div>
+
+  <div class="patents-grid">
+
+    <!-- FEATURED PATENT 1 -->
+    <div class="patent-card patent-featured fade-in">
+      <div class="patent-badge">Featured</div>
+      <div class="patent-number">US PATENT APPLICATION · 2025</div>
+      <div class="patent-title">Self-Improving RAG System with Re-ranking Feedbacks</div>
+      <p class="patent-desc">An innovative approach to enhancing Retrieval-Augmented Generation systems by incorporating re-ranker output as iterative feedback to progressively refine underlying document representations. This method effectively eliminates the computational overhead of re-ranking at inference time — reducing production costs without sacrificing retrieval quality.</p>
+      <div class="patent-tags"><span class="ptag">RAG</span><span class="ptag">Re-ranking</span><span class="ptag">Efficient LLMs</span></div>
+    </div>
+
+    <!-- FEATURED PATENT 2 -->
+    <div class="patent-card patent-featured fade-in" style="animation-delay:0.08s">
+      <div class="patent-badge">Featured</div>
+      <div class="patent-number">US PATENT APPLICATION · 2024</div>
+      <div class="patent-title">Grounded Language Generation via Importance-Adjusted BLEU</div>
+      <p class="patent-desc">Introduced an importance-adjusted BLEU score metric — computed via quantile-ranked weighting — to evaluate the factual grounding of LLM outputs. The LLM is then instructed to iteratively refine responses to maximize this adjusted score, promoting more accurate and contextually grounded language generation.</p>
+      <div class="patent-tags"><span class="ptag">LLM Evaluation</span><span class="ptag">Factual Grounding</span><span class="ptag">GenAI</span></div>
+    </div>
+
+    <!-- PATENT 3 -->
+    <div class="patent-card fade-in" style="animation-delay:0.12s">
+      <div class="patent-number">US PATENT · 2024</div>
+      <div class="patent-title">UnBAI — ML Fairness Framework for Enterprise AI</div>
+      <p class="patent-desc">Invented a comprehensive ML fairness framework ensuring ethical AI practices through standardized fairness evaluation across all UHG AI systems — a foundational pillar of Responsible AI governance at enterprise scale.</p>
+      <div class="patent-tags"><span class="ptag">Responsible AI</span><span class="ptag">Fairness</span><span class="ptag">MLOps</span></div>
+    </div>
+
+    <!-- PATENT 4 -->
+    <div class="patent-card fade-in" style="animation-delay:0.16s">
+      <div class="patent-number">US PATENT · 2023</div>
+      <div class="patent-title">Multi-Agent GenAI Root Cause Analysis (RCA) System</div>
+      <p class="patent-desc">A microservices-based multi-agent RCA architecture powered by GenAI — analyzing observability data, historical incidents, knowledge bases, and product documentation to intelligently identify root causes of production incidents in real time.</p>
+      <div class="patent-tags"><span class="ptag">Agentic AI</span><span class="ptag">GenAI</span><span class="ptag">Healthcare Ops</span></div>
+    </div>
+
+    <!-- PATENT 5 -->
+    <div class="patent-card fade-in" style="animation-delay:0.20s">
+      <div class="patent-number">US PATENT · 2023</div>
+      <div class="patent-title">Autonomous Clinical Quality Language (CQL) Code Generation</div>
+      <p class="patent-desc">An autonomous coding agent using the ReAct framework and LangGraph for workflow orchestration — enabling real-time integration with clinical knowledge repositories and intelligent, context-aware CQL code generation to accelerate clinical quality development.</p>
+      <div class="patent-tags"><span class="ptag">Agentic AI</span><span class="ptag">LangGraph</span><span class="ptag">Clinical AI</span></div>
+    </div>
+
+    <!-- PATENT 6 -->
+    <div class="patent-card fade-in" style="animation-delay:0.24s">
+      <div class="patent-number">US PATENT · 2023</div>
+      <div class="patent-title">Scalable RAG-Based Wellness Q&amp;A System (EAP)</div>
+      <p class="patent-desc">A scalable Retrieval-Augmented Generation chatbot for mental and emotional wellness serving 10,000+ active members — providing a safe space to talk, tools to promote well-being, and 24/7 support availability under an Employee Assistance Program.</p>
+      <div class="patent-tags"><span class="ptag">RAG</span><span class="ptag">Healthcare AI</span><span class="ptag">Conversational AI</span></div>
+    </div>
+
+    <!-- PATENT 7 -->
+    <div class="patent-card fade-in" style="animation-delay:0.28s">
+      <div class="patent-number">US PATENT · 2023</div>
+      <div class="patent-title">ServiceNow Ticket Deduplication via RAG Architecture</div>
+      <p class="patent-desc">An organization-wide intelligent ticket deduplication solution leveraging RAG to identify duplicate service tickets — delivering operational efficiency improvements projected to generate $1M in annual cost savings through reduced processing overhead.</p>
+      <div class="patent-tags"><span class="ptag">RAG</span><span class="ptag">NLP</span><span class="ptag">IT Operations</span></div>
+    </div>
+
+    <!-- PATENT 8 -->
+    <div class="patent-card fade-in" style="animation-delay:0.32s">
+      <div class="patent-number">US PATENT · 2022</div>
+      <div class="patent-title">ASR NLP Pipeline for In-Home Assessment Automation</div>
+      <p class="patent-desc">Audio-to-text Automatic Speech Recognition (ASR) NLP pipelines fine-tuned using NVIDIA NeMo models — processing over 500,000 clinical calls per month for an in-home assessment business, driving scheduling rate improvements and $40M in annual savings.</p>
+      <div class="patent-tags"><span class="ptag">ASR</span><span class="ptag">NLP</span><span class="ptag">NVIDIA NeMo</span></div>
+    </div>
+
+    <!-- REMAINING PATENTS BANNER -->
+    <div class="patent-card patent-more fade-in" style="animation-delay:0.36s; grid-column: 1 / -1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div class="patent-number">US PATENT PORTFOLIO · 4 ADDITIONAL PATENTS</div>
+          <div class="patent-title" style="font-size:1.1rem;margin-bottom:8px;">Responsible AI, Efficient LLM &amp; GenAI Areas</div>
+          <p class="patent-desc" style="max-width:640px;">Additional patents cover a broad range of innovations across Responsible AI governance, LLM efficiency optimizations, fairness metrics, and applied GenAI in healthcare — all filed under United Health Group as Senior Inventor.</p>
+        </div>
+        <div style="text-align:center;flex-shrink:0;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:600;color:var(--navy);line-height:1;">12</div>
+          <div style="font-size:0.72rem;color:var(--mid);font-weight:500;letter-spacing:0.08em;text-transform:uppercase;">Total US Patents</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label fade-in">Academic Background</p>
+  <h2 class="section-title fade-in">Education &amp; <em>Credentials</em></h2>
+  <div class="education-grid">
+    <div class="edu-card fade-in">
+      <div class="edu-degree">MBA — Marketing</div>
+      <div class="edu-school">IMT Ghaziabad</div>
+      <div class="edu-year">2009 — 2011</div>
+    </div>
+    <div class="edu-card fade-in" style="animation-delay:0.1s">
+      <div class="edu-degree">B.Tech — Computer Science</div>
+      <div class="edu-school">Jamia Millia Islamia, New Delhi</div>
+      <div class="edu-year">2003 — 2007</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label fade-in">Get In Touch</p>
+  <h2 class="section-title fade-in">Let's <em>Connect</em></h2>
+  <div class="contact-grid">
+    <div class="contact-info fade-in">
+      <a href="mailto:sudhanshu.sharma1985@gmail.com" class="contact-link">
+        <div class="contact-icon">✉</div>
+        <div>
+          <div class="contact-link-label">sudhanshu.sharma1985@gmail.com</div>
+          <div class="contact-link-sub">Email</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/in/sudhanshu-sharma-4a54291a0/" target="_blank" class="contact-link">
+        <div class="contact-icon">in</div>
+        <div>
+          <div class="contact-link-label">linkedin.com/in/sudhanshu-sharma</div>
+          <div class="contact-link-sub">LinkedIn</div>
+        </div>
+      </a>
+      <a href="https://medium.com/@Sudh" target="_blank" class="contact-link">
+        <div class="contact-icon">M</div>
+        <div>
+          <div class="contact-link-label">medium.com/@Sudh</div>
+          <div class="contact-link-sub">Medium — Articles &amp; Writing</div>
+        </div>
+      </a>
+      <a href="tel:+919620693131" class="contact-link">
+        <div class="contact-icon">☎</div>
+        <div>
+          <div class="contact-link-label">+91 96206 93131</div>
+          <div class="contact-link-sub">Phone</div>
+        </div>
+      </a>
+    </div>
+    <div class="fade-in" style="animation-delay:0.1s; padding: 12px 0;">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--navy);line-height:1.4;margin-bottom:20px;">
+        Open to discussing <em>AI leadership</em>, strategic collaborations, speaking opportunities, and advisory roles.
+      </p>
+      <p style="font-size:0.88rem;color:var(--mid);line-height:1.7;">
+        Whether you're building your next GenAI product, exploring Responsible AI, or want a perspective from someone who has shipped AI at scale in healthcare — feel free to reach out.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sudhanshu Sharma<span>.</span></div>
+  <p>© 2026 · Principal Data Scientist · United Health Group (Optum)</p>
+</footer>
+
+<!-- CHATBOT FAB -->
+<button class="chat-fab" onclick="toggleChat()" title="Chat with AI Assistant" id="chat-fab-btn">🤖</button>
+
+<!-- CHATBOT PANEL -->
+<div class="chat-panel" id="chat-panel">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div>
+      <div class="chat-header-name">Siddhi — Sudhanshu's AI Assistant</div>
+      <div class="chat-header-sub"><span class="chat-status-dot"></span>Ask me anything about Sudhanshu</div>
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg msg-bot">
+      👋 Hi! I'm <strong>Siddhi</strong>, Sudhanshu's AI assistant. Ask me anything about his experience, patents, projects, or skills — I'm here to help!
+    </div>
+  </div>
+  <div class="chat-input-area">
+    <textarea class="chat-input" id="chat-input" placeholder="Ask about Sudhanshu's work..." rows="1" onkeydown="handleKey(event)"></textarea>
+    <button class="chat-send" onclick="sendMessage()">➤</button>
+  </div>
+  <div class="chat-branding">Powered by Claude AI</div>
+</div>
+
+<script>
+  // --- Scroll Animations ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // --- Chat ---
+  let chatOpen = false;
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    document.getElementById('chat-panel').classList.toggle('open', chatOpen);
+    document.getElementById('chat-fab-btn').textContent = chatOpen ? '✕' : '🤖';
+  }
+
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    input.style.height = 'auto';
+
+    addMessage(text, 'user');
+    const typing = addTyping();
+
+    const context = `You are Siddhi, an AI assistant for Sudhanshu Sharma's personal portfolio website. Be helpful, friendly and concise. Here is Sudhanshu's profile:
+
+NAME: Sudhanshu Sharma
+CURRENT ROLE: Principal Data Scientist at United Health Group (UHG / Optum), Jan 2022 - Present
+EXPERIENCE: 16+ years in AI/ML across Healthcare, Retail, and Banking
+PATENTS: 12 US patents in Responsible AI, GenAI, and Efficient LLMs. Established and leads the UHG Innovation Center.
+
+KEY PROJECTS AT UHG:
+- Autonomous coding agent (ReAct + LangGraph) for Clinical Quality Language development
+- RAG-based wellness chatbot serving 10,000+ EAP members
+- ServiceNow ticket deduplication RAG system saving $1M/year
+- ASR NLP pipelines (NVIDIA NeMo) processing 500K calls/month, saving $40M/year
+- ML Fairness Framework (UnBAI) for ethical AI at enterprise scale
+
+PREVIOUS ROLES:
+- Associate Principal Data Scientist, Accenture (Dec 2017 - Dec 2021): Led team of 6 data scientists, built ML Price Optimization tool driving ~$50M quarterly profitability improvement
+- Co-Founder, Tandurust Healthy Food (Oct 2014 - Jun 2016): Angel-funded FoodTech startup in Bangalore
+- Analytics Lead, Mphasis (Jul 2016 - Dec 2017): NLP projects, $1.2BN sales forecasting, NPS predictor app
+- Senior Analyst, Mphasis (Aug 2011 - Sep 2014): SPIN sales forecasting tool ($1BN), Power BI dashboards
+- Business Analyst, CSC (Jun 2007 - Jun 2009): BRD/FSD documentation
+
+EDUCATION:
+- MBA in Marketing — IMT Ghaziabad (2011)
+- B.Tech in Computer Science — Jamia Millia Islamia (2007)
+
+SKILLS: Python, Azure ML, Databricks, LLMs, GenAI, RAG, LangGraph, PyTorch, TensorFlow, Transformers, NLP, ASR, MLOps, OpenAI, NVIDIA NeMo, Vector Databases
+
+ARTICLES: Published on Medium (Towards AI, GoPenAI) about GenAI careers, LLM prompting, and ML
+CONTACT: sudhanshu.sharma1985@gmail.com | LinkedIn: sudhanshu-sharma-4a54291a0 | Medium: @Sudh
+
+Answer questions about Sudhanshu's work, experience, patents and skills. Keep answers concise (2-4 sentences). If asked something outside this profile, politely say you can only speak to Sudhanshu's professional profile.`;
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: context,
+          messages: [{ role: 'user', content: text }]
+        })
+      });
+      const data = await res.json();
+      const reply = data.content?.[0]?.text || "I'm having trouble connecting right now. Please try again shortly.";
+      typing.remove();
+      addMessage(reply, 'bot');
+    } catch (e) {
+      typing.remove();
+      addMessage("Apologies, I'm having a connectivity issue. Please reach out to Sudhanshu directly at sudhanshu.sharma1985@gmail.com!", 'bot');
+    }
+  }
+
+  function addMessage(text, role) {
+    const msgs = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = `msg msg-${role}`;
+    div.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  function addTyping() {
+    const msgs = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = 'msg-typing';
+    div.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    return div;
+  }
+
+  // Auto-resize textarea
+  document.getElementById('chat-input').addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+  });
+</script>
+</body>
+</html>
