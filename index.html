@@ -473,8 +473,9 @@
   footer p { font-size: 0.72rem; font-family: 'IBM Plex Mono', monospace; }
 
   /* ── FADE-IN ── */
-  .fi { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
-  .fi.in { opacity: 1; transform: translateY(0); }
+  .fi { opacity: 1; transform: translateY(0); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .js-ready .fi { opacity: 0; transform: translateY(22px); }
+  .js-ready .fi.in { opacity: 1; transform: translateY(0); }
 
   /* ── RESPONSIVE ── */
   @media(max-width:960px){
@@ -606,6 +607,7 @@
         <ul class="tl-bullets">
           <li>Led a team of 6 data scientists within the Data Science Center of Excellence, driving strategic client relationships and delivering high-impact analytical solutions across industries.</li>
           <li>Built an ML-based Price Optimization &amp; Simulation tool enabling product managers to evaluate pricing impact — resulting in approximately <span class="chip">$50M quarterly profitability</span> improvement.</li>
+          <li>Built a Talent Success Profile (TSP) app using NLP — boosting skill interview selection from <span class="chip">20% → 60%</span> and significantly reducing candidate processing time.</li>
         </ul>
       </div>
     </div>
@@ -619,7 +621,6 @@
       <div class="tl-body">
         <div class="tl-role">Analytics Lead</div>
         <ul class="tl-bullets">
-          <li>Built a Talent Success Profile (TSP) app using NLP — boosting skill interview selection from <span class="chip">20% → 60%</span> and significantly reducing candidate processing time.</li>
           <li>Sales planning tool forecasting additional sales worth <span class="chip">$1.2BN</span> across 11 markets and 22 Fuel &amp; Non-Fuel products.</li>
           <li>Built an NPS Predictor app improving average NPS score from <span class="chip">5.2 → 7.4</span> for a South African retail company.</li>
         </ul>
@@ -635,7 +636,7 @@
       <div class="tl-body">
         <div class="tl-role">Co-Founder</div>
         <ul class="tl-bullets">
-          <li>Co-founded <strong>Tandurust Healthy Food</strong> — an angel investor–funded FoodTech startup delivering nutritionist-endorsed, calorie-counted meals on subscription in Bangalore.</li>
+          <li>Co-founded <strong>Tandurust Healthy Food</strong> — an angel investor–funded(100k$) FoodTech startup delivering nutritionist-endorsed, calorie-counted meals on subscription in Bangalore.</li>
         </ul>
       </div>
     </div>
@@ -664,7 +665,7 @@
       <div class="tl-body">
         <div class="tl-role">Business Analyst</div>
         <ul class="tl-bullets">
-          <li>Prepared requirement documents (BRD, FSD) for functional enhancements and features across planned product releases.</li>
+          <li>Worked as a .Net developer. Also prepared requirement documents (BRD, FSD) for functional enhancements and features across planned product releases.</li>
         </ul>
       </div>
     </div>
@@ -789,14 +790,6 @@
       <div class="p-tags"><span class="ptag">Training Data</span><span class="ptag">Outlier Detection</span><span class="ptag">ML</span></div>
     </div>
 
-    <div class="p-card p-card-wide fi" style="transition-delay:.32s">
-      <div>
-        <div class="p-num" style="color:rgba(255,255,255,0.4)">US20250342362A1 · Published 2025-11-06 · Plus 6 additional patents</div>
-        <div class="p-title" style="color:#fff;font-size:1.15rem">Reinforcement Learning-Based Systems for Message Generation &amp; More</div>
-        <p class="p-desc" style="color:rgba(255,255,255,0.55);max-width:560px">A reinforcement learning model generates target messages satisfying a user's response level. Portfolio also includes patents in Agentic AI (CQL codegen, Multi-Agent RCA), healthcare NLP (ASR pipelines, EAP chatbot), and IT operations (ticket deduplication).</p>
-      </div>
-      <div class="p-wide-count">12<span>Total US Patents</span></div>
-    </div>
 
   </div>
 </section>
@@ -835,11 +828,7 @@
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="foot-brand">Sudhanshu Sharma<span> · Principal Data Scientist</span></div>
-  <p>© 2026 · United Health Group (Optum)</p>
-</footer>
+
 
 <!-- CHATBOT -->
 <button class="fab" onclick="toggleChat()" id="fab-btn">🤖</button>
@@ -863,7 +852,8 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal
+  // Scroll reveal — only animate if page is in a real browser viewport
+  document.body.classList.add('js-ready');
   const io = new IntersectionObserver(
     es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); }),
     { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
